@@ -1,0 +1,220 @@
+.TransactionItem {
+    display: flex;
+    padding: 20px;
+    background: var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+}
+
+.transaction {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.status {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.statusText {
+    font-size: calc(var(--font-size-s) + 2px);
+    font-weight: 700;
+}
+
+.arrow {
+    display: none;
+    width: 24px;
+    height: 24px;
+}
+
+.arrowReceived {
+    display: inherit;
+
+    & > path {
+        stroke: var(--green-color);
+    }
+}
+
+.arrowSent {
+    transform: rotate(180deg);
+    display: inherit;
+
+    & > path {
+        stroke: var(--red-color);
+    }
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.transactionInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-evenly;
+
+    width: 100%;
+}
+
+.transactionId {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    a {
+        letter-spacing: 1px;
+    }
+}
+
+.copy {
+    cursor: pointer;
+    padding: 6px 6px 4px;
+    background-color: var(--bg-color);
+    border-radius: 100px;
+}
+
+.copyClipboard {
+    width: 16px;
+    height: 16px;
+
+
+    & > path {
+        fill: var(--inverted-bg-color);
+    }
+}
+
+.transactionCreated {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    span {
+        font-size: var(--font-size-s);
+    }
+}
+
+.calendar {
+    width: 20px;
+    height: 20px;
+
+    path {
+        fill: var(--inverted-bg-color);
+    }
+}
+
+.transactionAmount {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+
+    width: 100%;
+    margin-right: 20px;
+}
+
+
+.amountAda {
+    span {
+        font-size: var(--font-size-s);
+    }
+}
+
+.buy {
+    color: var(--red-color);
+
+    &::before {
+        content: '-';
+    }
+}
+
+.reverse {
+    color: var(--green-color);
+
+    &::before {
+        content: '+';
+    }
+}
+
+.amount {
+    padding: 5px;
+    background-color: var(--secondary-bg-color);
+    border-radius: 4px;
+}
+
+.fee {
+    span {
+        font-size: var(--font-size-s);
+    }
+}
+
+.tokenBuy {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.token {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    padding: 5px 10px;
+
+    background: var(--bg-color);
+    border-radius: var(--border-radius);
+
+    span {
+        font-size: var(--font-size-s);
+    }
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.actionItem {
+    width: 30px;
+    height: 30px;
+
+    & > path {
+        fill: var(--inverted-bg-color);
+        stroke: var(--inverted-bg-color);
+    }
+}
+
+.action {
+    cursor: pointer;
+
+    display: flex;
+
+    padding: 6px;
+
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+
+    &:hover {
+        background-color: var(--inverted-bg-color);
+
+        .actionItem {
+            & > path {
+                fill: var(--bg-color);
+                stroke: var(--bg-color);
+            }
+        }
+    }
+}
+
+
+
+.active {
+    transform: rotate(90deg);
+}
+
+

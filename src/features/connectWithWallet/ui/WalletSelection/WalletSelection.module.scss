@@ -1,0 +1,21 @@
+.WalletChoose {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+.headerText {
+    color: var(--accent-color);
+}
+
+.button {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 500px;
+}
+
+.icon {
+    height: 30px;
+}

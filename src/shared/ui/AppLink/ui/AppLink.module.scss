@@ -1,0 +1,21 @@
+.AppLink {
+    padding: 10px;
+
+    font-size: var(--font-size-m);
+    color: var(--primary-color);
+    text-decoration: none;
+
+    border-radius: var(--border-radius);
+
+    &:hover {
+        background-color: var(--bg-color);
+        transition: background-color 0.4s;
+    }
+}
+
+.AppLink.active {
+    color: var(--accent-color);
+    background-color: var(--bg-color);
+    transition: color 0.4s;
+}
+

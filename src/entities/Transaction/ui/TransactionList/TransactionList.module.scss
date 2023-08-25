@@ -1,0 +1,49 @@
+.TransactionList {
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.refresh {
+    cursor: pointer;
+    padding: 6px;
+    background-color: var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+
+    &:hover {
+        background-color: var(--inverted-bg-color);
+
+        & .refreshIcon > path {
+            stroke: var(--bg-color);
+        }
+    }
+
+    &:not(:active) {
+        transition: transform 2s ease-in-out;
+    }
+
+    &:active {
+        transform: rotate(-360deg);
+        background-color: var(--inverted-bg-color);
+    }
+}
+
+.refreshIcon {
+    width: 30px;
+    height: 30px;
+
+    & > path {
+        stroke: var(--inverted-bg-color);
+    }
+}
+
+.transactions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}

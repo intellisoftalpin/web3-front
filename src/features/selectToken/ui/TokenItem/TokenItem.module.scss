@@ -1,0 +1,25 @@
+.TokenItem {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 500px;
+}
+
+.tokenItemIcon {
+    height: 40px;
+}
+
+.names {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    .shortName {
+        font-size: var(--font-size-m);
+        text-transform: uppercase;
+    }
+
+    .fullName {
+        font-size: var(--font-size-s);
+    }
+}

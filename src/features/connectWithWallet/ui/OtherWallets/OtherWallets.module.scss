@@ -1,0 +1,52 @@
+.OtherWallets {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+        color: var(--accent-color);
+    }
+}
+
+.arrow {
+    width: 24px;
+    height: 24px;
+
+    & > path {
+        fill: var(--secondary-bg-color);
+        stroke: var(--inverted-bg-color);
+    }
+}
+
+.arrowActive {
+    transform: rotate(180deg);
+
+    & > path {
+        stroke: var(--inverted-bg-color);
+    }
+}
+
+.wallets {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.button {
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    img {
+        width: 30px;
+        height: 30px;
+    }
+}

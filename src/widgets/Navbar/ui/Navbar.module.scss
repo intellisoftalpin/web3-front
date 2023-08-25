@@ -1,0 +1,33 @@
+.Navbar {
+    display: flex;
+    align-items: center;
+
+    height: var(--navbar-height);
+    padding: 0 20px;
+
+    background-color: var(--secondary-bg-color);
+}
+
+.appLinks {
+    display: flex;
+    gap: 10px;
+}
+
+.appFeatures {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-end;
+
+    width: 100%;
+}
+
+.connectedWallet {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    img {
+        height: 40px;
+    }
+}

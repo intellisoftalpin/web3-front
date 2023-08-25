@@ -1,0 +1,43 @@
+.SingleItemHistory {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 10px;
+
+    background-color: var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+}
+
+.amount {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.tokenBuy {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.token {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+
+    padding: 5px 10px;
+
+    background: var(--bg-color);
+    border-radius: var(--border-radius);
+
+    span {
+        font-size: var(--font-size-s);
+    }
+}
+
+.quantityTokens {
+    padding: 5px;
+    background-color: var(--secondary-bg-color);
+    border-radius: 4px;
+}

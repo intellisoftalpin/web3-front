@@ -1,0 +1,22 @@
+@import "reset";
+@import "global";
+@import "variables/global";
+@import "themes/light";
+@import "themes/dark";
+
+.App {
+    min-height: 100vh;
+    font-family: Consolas, sans-serif;
+    color: var(--primary-color);
+    background-color: var(--bg-color);
+}
+
+.body-toast {
+    font-family: Consolas, sans-serif;
+}
+
+.toast {
+    background: var(--bg-color) !important;
+}
+
+

@@ -1,0 +1,22 @@
+.WalletTokens {
+    flex: 1;
+    padding-bottom: 4px;
+    background-color: var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+
+    table {
+        min-width: 400px;
+    }
+}
+
+.headerToken {
+    th {
+        padding: 14px;
+    }
+}
+
+.token {
+    th {
+        padding: 14px;
+    }
+}

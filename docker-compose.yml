@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+
+  ctokens-swap-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/sh -c "/nginx_entrypoint.sh;nginx -g 'daemon off;'"
+    environment:
+      BACKEND_URL_KEY: "${BACKEND_URL_KEY}"
+      WALLET_NETWORK_KEY: "${WALLET_NETWORK_KEY}"
+    ports:
+      - '${PORT}:80'

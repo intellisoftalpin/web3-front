@@ -1,0 +1,110 @@
+.WalletDropdown {
+    position: absolute;
+    top: 50px;
+
+    display: none;
+
+    width: 500px;
+    padding: 20px;
+
+    opacity: 0;
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: 1px 1px 10px 5px rgb(0 0 0 / 20%);
+}
+
+.show {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: show 500ms forwards;
+}
+
+.activeWallet {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    span {
+        font-size: var(--font-size-s);
+    }
+}
+
+.walletInformation {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    padding: 20px;
+
+    background-color: var(--help-bg-color);
+    border-radius: var(--border-radius);
+}
+
+.address {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tokens {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.copy {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+
+    & > path {
+        fill: var(--inverted-bg-color);
+    }
+}
+
+.connectedWallet {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.name {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.network {
+    span {
+        color: var(--green-color);
+    }
+}
+
+.disconnect {
+    width: 100%;
+}
+
+.disconnectButton {
+    width: 100%;
+
+    span {
+        font-size: var(--font-size-s);
+    }
+}
+
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

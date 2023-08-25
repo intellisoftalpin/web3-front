@@ -1,0 +1,23 @@
+.Tooltip {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tooltipIcon {
+    width: 20px;
+    height: 20px;
+    fill: var(--inverted-bg-color)
+}
+
+.tooltipText {
+    max-width: 400px;
+    background-color: var(--secondary-accent-color)!important;
+    border-radius: 300px;
+
+    span {
+        font-size: var(--font-size-s);
+        color: var(--inverted-bg-color);
+    }
+}
