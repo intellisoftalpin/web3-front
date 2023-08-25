@@ -1,7 +1,7 @@
 import { type FC, useEffect } from 'react'
 import cls from './WalletSelection.module.scss'
 import classNames from 'classnames'
-import { BrowserWallet } from '@meshsdk/core'
+import { BrowserWallet, type DataSignature } from '@meshsdk/core'
 import { Button } from 'shared/ui/Button'
 import { useLoginMutation } from '../../api/loginApi'
 import { SIGNATURE_PAYLOAD } from '../../model/consts/signaturePayload'
@@ -38,23 +38,26 @@ export const WalletSelection: FC<WalletChooseProps> = ({
     const dispatch = useAppDispatch()
 
     const connectToWallet = async (walletInformation: WalletItem) => {
-        const { name, icon } = walletInformation
         try {
-            const wallet = await BrowserWallet.enable(name)
-            const changeAddress = await wallet.getChangeAddress()
-            const { signature } = await wallet.signData(changeAddress, SIGNATURE_PAYLOAD)
+            const { name, icon } = walletInformation
+            const wallet = await BrowserWallet.enable(name).catch(() => { notify('Wallet not authorised', 'error') })
+            if (wallet) {
+                const changeAddress = await wallet.getChangeAddress()
+                const signData: DataSignature = await wallet.signData(changeAddress, SIGNATURE_PAYLOAD).catch((e) => { notify(e.info, 'error') })
 
-            const walletInformation: LocalStorageWallet = { walletName: name, icon, authHash: signature }
-
-            await login({ userHash: signature })
-                .then(() => {
-                    dispatch(walletActions.connectWallet(walletInformation))
-                    dispatch(authActions.auth({ connected: true }))
-                    localStorage.setItem(LOCAL_STORAGE_WALLET_KEY, JSON.stringify(walletInformation))
-                    onClose(false)
-                })
-        } catch (e: unknown) {
-            notify(JSON.stringify(e), 'error')
+                if (signData !== undefined) {
+                    const walletInformation: LocalStorageWallet = { walletName: name, icon, authHash: signData.signature }
+                    await login({ userHash: signData.signature })
+                        .then(() => {
+                            dispatch(walletActions.connectWallet(walletInformation))
+                            dispatch(authActions.auth({ connected: true }))
+                            localStorage.setItem(LOCAL_STORAGE_WALLET_KEY, JSON.stringify(walletInformation))
+                            onClose(false)
+                        })
+                }
+            }
+        } catch (e: any) {
+            console.log(e)
         }
     }
 

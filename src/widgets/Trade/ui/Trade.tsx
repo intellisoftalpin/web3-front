@@ -59,19 +59,19 @@ export const Trade: FC<TradeProps> = ({ className }) => {
             const transferAmountTokens = String(tokenPrice.price)
             const transferAmountFee = String(deposit + processingFee)
             const cbor = await makeCborBuyTokens(transferAmountTokens, transferAmountFee)
-            const data: RequestTransaction = {
-                addressTo: address,
-                policyId,
-                assetId,
-                cbor,
-                transferAmount: String(convertToLovelaces(+sumTransferAmount())),
-                assetAmount: String(assetQuantity)
+            if (cbor) {
+                const data: RequestTransaction = {
+                    addressTo: address,
+                    policyId,
+                    assetId,
+                    cbor,
+                    transferAmount: String(convertToLovelaces(+sumTransferAmount())),
+                    assetAmount: String(assetQuantity)
+                }
+                await saveTransaction({ type: 'buy', data }).then(() => { notify('Transaction created', 'success') })
             }
-            await saveTransaction({ type: 'buy', data })
-        } catch (e: any) {
-            if (e instanceof Error) {
-                notify(e.message, 'error')
-            }
+        } catch (e) {
+            console.log(e)
         }
     }
 
