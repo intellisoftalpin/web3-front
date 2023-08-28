@@ -30,6 +30,12 @@ export const TransactionList: FC<TransactionListProps> = ({ className }) => {
         }
     }, [connected, transactionsResponse])
 
+    useEffect(() => {
+        if (connected) {
+            transactionRefetch().catch(console.log)
+        }
+    }, [connected, transactionRefetch])
+
     const transactionItems = transactions.map(item => <TransactionItem key={item.id} transaction={item}/>)
 
     return (
