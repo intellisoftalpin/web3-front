@@ -5,6 +5,9 @@ import { walletActions } from 'entities/Wallet'
 import { notify } from 'shared/lib/notify/notify'
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getAuth } from 'entities/Auth/model/selectors/getAuth/getAuth'
+import { BrowserWallet } from '@meshsdk/core'
+import { getWallet } from 'entities/Wallet/model/selectors/getWallet/getWallet'
+import { authActions } from 'entities/Auth/model/slice/authSlice'
 
 interface WalletProviderProps {
     children: ReactNode
@@ -13,13 +16,26 @@ interface WalletProviderProps {
 export const WalletProvider: FC<WalletProviderProps> = ({ children }) => {
     const dispatch = useAppDispatch()
     const { connected } = useAppSelector(getAuth)
+    const { address, walletName } = useAppSelector(getWallet)
 
     const setWallet = useCallback(async () => {
         if (connected) {
-            const data = await getWalletInfo()
-            dispatch(walletActions.setWalletData(data))
+            const wallet = await BrowserWallet.enable(walletName).catch(() => {
+                dispatch(authActions.auth({ connected: false }))
+                dispatch(walletActions.disconnectWallet())
+            })
+            if (wallet) {
+                const changedAddress = await wallet.getChangeAddress()
+                if (address !== '' && changedAddress !== address) {
+                    dispatch(authActions.auth({ connected: false }))
+                    dispatch(walletActions.disconnectWallet())
+                } else {
+                    const data = await getWalletInfo()
+                    dispatch(walletActions.setWalletData(data))
+                }
+            }
         }
-    }, [connected, dispatch])
+    }, [address, connected, dispatch, walletName])
 
     useEffect(() => {
         setWallet().catch((e) => { notify(e, 'error') })
@@ -28,7 +44,7 @@ export const WalletProvider: FC<WalletProviderProps> = ({ children }) => {
     useEffect(() => {
         const timer = setInterval(() => {
             setWallet().catch((e) => { notify(e, 'error') })
-        }, 10000)
+        }, 5000)
         return () => { clearInterval(timer) }
     }, [setWallet])
 
