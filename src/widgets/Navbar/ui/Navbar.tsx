@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { LangSwitcher } from 'widgets/LangSwitcher'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import { WalletConnect } from 'widgets/WalletConnect'
+import { NotificationCenter } from 'widgets/NotificationCenter'
 
 interface NavbarProps {
     className?: string
@@ -29,6 +30,7 @@ export const Navbar: FC<NavbarProps> = ({ className }) => {
                 <WalletConnect/>
                 <ThemeSwitcher/>
                 <LangSwitcher/>
+                <NotificationCenter/>
             </div>
         </header>
     )

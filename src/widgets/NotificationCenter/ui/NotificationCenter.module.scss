@@ -1,0 +1,44 @@
+.NotificationCenter {
+    position: relative;
+}
+
+.notificationBell {
+    position: relative;
+    padding: 7px;
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.5s;
+
+    &:hover {
+        background-color: var(--inverted-bg-color);
+
+        .bell {
+            fill: var(--bg-color);
+        }
+    }
+}
+
+.bell {
+    width: 26px;
+    height: 26px;
+
+    fill: var(--inverted-bg-color);
+    transition: fill 0.5s;
+}
+
+.countNotifications {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 5px;
+    border-radius: 1000px;
+    background-color: var(--accent-color);
+    right: 2px;
+    top: 2px;
+
+    span {
+        font-size: var(--font-size-s);
+    }
+}
