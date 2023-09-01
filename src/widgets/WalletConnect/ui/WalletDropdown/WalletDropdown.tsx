@@ -51,7 +51,7 @@ export const WalletDropdown: FC<WalletDropdownProps> = ({ className, openedDropd
                 <WalletTokens/>
             </div>
             <div className={cls.disconnect}>
-                <Button variant='filled' className={cls.disconnectButton} onClick={disconnectWallet}>
+                <Button variant='outline' className={cls.disconnectButton} onClick={disconnectWallet}>
                     Disconnect wallet
                 </Button>
             </div>

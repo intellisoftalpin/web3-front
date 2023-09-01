@@ -21,6 +21,7 @@ import { useSaveTransactionMutation } from 'entities/Transaction'
 import { convertToLovelaces } from 'shared/lib/convertToLovalaces/convertToLovelaces'
 import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/convertCountWithDecimals'
 import { Tooltip } from 'shared/ui/Tooltip'
+import { TokenImage } from 'shared/ui/TokenImage'
 
 interface TradeProps {
     className?: string
@@ -95,7 +96,7 @@ export const Trade: FC<TradeProps> = ({ className }) => {
                     onClick={openTokenModal}>
                     <span>{t('Buy')}</span>
                     <div className={cls.assetImage}>
-                        {logo && <img src={logo} alt={assetName}/>}
+                        <TokenImage logo={logo} policyId={policyId} assetId={assetId}/>
                         <span>{assetName}</span>
                     </div>
                     {tokensCheck && <Arrow className={cls.arrow}/>}
