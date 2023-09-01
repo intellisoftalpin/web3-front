@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next'
 import { copyText } from 'shared/lib/copyText/copyText'
 import { notify } from 'shared/lib/notify/notify'
 import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/convertCountWithDecimals'
+import { TokenImage } from 'shared/ui/TokenImage'
 
 interface TransactionItemProps {
     className?: string
@@ -93,6 +94,7 @@ export const TransactionItem: FC<TransactionItemProps> = ({
                                         [cls.arrowSent]: transaction.type === 'Sent' || transaction.type === 'buy',
                                         [cls.arrowReceived]: transaction.type === 'received' || transaction.type === 'reverse'
                                     })}/>
+                                    <TokenImage assetId={transaction.assetId} policyId={transaction.policyId} className={cls.tokenImage}/>
                                     <span>{hexToString(transaction.assetId)}</span>
                                     <span className={cls.amount}>{convertCountWithDecimals(+transaction.assetAmount, transaction.decimals)}</span>
                                 </div>

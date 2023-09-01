@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import { Button } from 'shared/ui/Button'
 import { tokenActions, type TokenSchema } from 'entities/Token'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { TokenImage } from 'shared/ui/TokenImage'
 
 interface TokenItemProps {
     className?: string
@@ -30,12 +31,7 @@ export const TokenItem: FC<TokenItemProps> = (props) => {
             variant="outline"
             onClick={setChosenToken}
         >
-            {token.logo &&
-                <img src={token.logo}
-                    alt={token.ticker}
-                    className={cls.tokenItemIcon}
-                />
-            }
+            <TokenImage logo={token.logo} policyId={token.policyId} assetId={token.assetId}/>
             <div className={cls.names}>
                 <span className={cls.shortName}>{token.ticker}</span>
                 <span className={cls.fullName}>{token.assetName}</span>
