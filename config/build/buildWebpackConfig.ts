@@ -12,7 +12,7 @@ export function buildWebpackConfig (options: BuildOptions): webpack.Configuratio
         mode,
         entry: paths.entry,
         output: {
-            filename: '[name].[contenthash].js',
+            filename: 'static/js/[name].[contenthash].js',
             path: paths.build,
             clean: true
         },

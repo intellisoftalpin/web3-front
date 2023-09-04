@@ -38,15 +38,15 @@ export const TransactionList: FC<TransactionListProps> = ({ className }) => {
 
     const transactionItems = transactions.map(item => <TransactionItem key={item.id} transaction={item}/>)
 
+    if (!connected) return null
+
     return (
         <div className={classNames(cls.TransactionList, {}, [className])}>
             <div className={cls.header}>
                 <h1>{t('Recent Transactions')}</h1>
-                {connected &&
-                    <div className={cls.refresh} onClick={transactionRefetch}>
-                        <Refresh className={cls.refreshIcon}/>
-                    </div>
-                }
+                <div className={cls.refresh} onClick={transactionRefetch}>
+                    <Refresh className={cls.refreshIcon}/>
+                </div>
             </div>
             <div className={cls.transactions}>
                 {transactionItems}
