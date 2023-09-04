@@ -22,9 +22,6 @@ export const Navbar: FC<NavbarProps> = ({ className }) => {
                 <AppLink to={RoutesPath.trade}>
                     {t('Buy')}
                 </AppLink>
-                <AppLink to={RoutesPath.overview}>
-                    {t('Overview')}
-                </AppLink>
             </nav>
             <div className={cls.appFeatures}>
                 <WalletConnect/>

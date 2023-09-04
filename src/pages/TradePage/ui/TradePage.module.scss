@@ -1,6 +1,11 @@
 .TradePage {
     display: flex;
+    flex-direction: column;
+    gap: 20px;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - var(--navbar-height));
+    min-height: calc(100vh - var(--navbar-height));
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px;
 }
