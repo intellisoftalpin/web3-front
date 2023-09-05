@@ -6,9 +6,12 @@
 
 .App {
     min-height: 100vh;
+
     font-family: Consolas, sans-serif;
     color: var(--primary-color);
+
     background-color: var(--bg-color);
+
     transition: background-color .3s;
 }
 

@@ -7,12 +7,14 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getWallet } from 'entities/Wallet/model/selectors/getWallet/getWallet'
 import { useOutsideElement } from 'shared/lib/hooks/useOutsideElement/useOutsideElement'
 import { shortFormatText } from 'shared/lib/shortFormatText/shortFormatText'
+import { useTranslation } from 'react-i18next'
 
 interface WalletConnectedProps {
     className?: string
 }
 
 export const WalletConnected: FC<WalletConnectedProps> = ({ className }) => {
+    const { t } = useTranslation()
     const { icon, balance, address } = useAppSelector(getWallet)
 
     const blockRef = useRef(null)
@@ -33,7 +35,7 @@ export const WalletConnected: FC<WalletConnectedProps> = ({ className }) => {
         <div className={classNames(cls.WalletConnected, {}, [className])} ref={blockRef}>
             <div className={cls.wallet} onClick={toggleDropdown}>
                 <div className={cls.balance}>
-                    <span className={cls.available}>Available Balance:</span>
+                    <span className={cls.available}>{t('Available Balance')}:</span>
                     <span>{'₳'}{balance}</span>
                 </div>
                 <div className={cls.address}>

@@ -59,7 +59,7 @@ export const Trade: FC<TradeProps> = ({ className }) => {
         try {
             const transferAmountTokens = String(tokenPrice.price)
             const transferAmountFee = String(deposit + processingFee)
-            const cbor = await makeCborBuyTokens(transferAmountTokens, transferAmountFee)
+            const cbor = await makeCborBuyTokens(transferAmountTokens, transferAmountFee, fee)
             if (cbor) {
                 const data: RequestTransaction = {
                     addressTo: address,

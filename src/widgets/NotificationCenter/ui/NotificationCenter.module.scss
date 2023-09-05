@@ -3,11 +3,15 @@
 }
 
 .notificationBell {
+    cursor: pointer;
+
     position: relative;
+
     padding: 7px;
+
     background-color: var(--bg-color);
     border-radius: var(--border-radius);
-    cursor: pointer;
+
     transition: background-color 0.5s;
 
     &:hover {
@@ -22,21 +26,23 @@
 .bell {
     width: 26px;
     height: 26px;
-
     fill: var(--inverted-bg-color);
     transition: fill 0.5s;
 }
 
 .countNotifications {
     position: absolute;
+    top: 2px;
+    right: 2px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 1px 5px;
-    border-radius: 1000px;
+
     background-color: var(--accent-color);
-    right: 2px;
-    top: 2px;
+    border-radius: 1000px;
 
     span {
         font-size: var(--font-size-s);

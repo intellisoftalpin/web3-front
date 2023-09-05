@@ -5,9 +5,17 @@ import classNames from 'classnames'
 import { useTheme } from 'app/providers/ThemeProvider'
 import { Navbar } from 'widgets/Navbar'
 import { ToastContainer } from 'react-toastify'
+import { useEffect } from 'react'
 
 export const App = () => {
     const { theme } = useTheme()
+
+    useEffect(() => {
+        document.title = window?._env_?.TITLE || process.env.TITLE
+        document.querySelector('meta[name="description"]')
+            ?.setAttribute('content', window?._env_?.DESCRIPTION || process.env.DESCRIPTION)
+    }, [])
+
     return (
         <div className={classNames('App', theme)}>
             <Navbar/>

@@ -52,5 +52,11 @@
   "Returned Amount": "Returned Amount",
   "Returned Amount Tooltip": "The amount of ADA returned and the count of tokens",
   "Full payment amount Tooltip": "The actual amount of payment, not including the deposit",
-  "and": "and"
+  "and": "and",
+  "Notifications logs": "Notifications logs",
+  "Notifications are missing": "Notifications are missing",
+  "Available Balance": "Available Balance",
+  "Active Wallet": "Active Wallet",
+  "Tokens": "Tokens",
+  "Disconnect wallet": "Disconnect wallet"
 }
