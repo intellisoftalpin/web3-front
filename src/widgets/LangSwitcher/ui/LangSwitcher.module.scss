@@ -23,6 +23,7 @@
 
     background-color: var(--bg-color);
     border-radius: var(--border-radius);
+
     transition: background-color 0.5s;
 
     &:hover {
@@ -36,6 +37,7 @@
 
         .arrow {
             transition: fill 0.5s;
+
             & > path {
                 fill: var(--bg-color);
             }
@@ -79,9 +81,9 @@
     padding: 10px 16px;
 
     &:hover {
-        transition: background-color 0.5s;
         background-color: var(--inverted-bg-color);
         border-radius: var(--border-radius);
+        transition: background-color 0.5s;
 
         span {
             color: var(--bg-color);

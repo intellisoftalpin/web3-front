@@ -20,5 +20,10 @@ declare interface Window {
     _env_: {
         BACKEND_URL_KEY: string
         WALLET_NETWORK_KEY: string
+        PORT: string
+        DESCRIPTION: string
+        TITLE: string
+        LINK: string
+        LINK_TEXT: string
     }
 }

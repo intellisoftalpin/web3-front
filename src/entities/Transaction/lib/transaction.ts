@@ -3,9 +3,9 @@ import { BrowserWallet, Transaction } from '@meshsdk/core'
 import { notify } from 'shared/lib/notify/notify'
 import { convertToAda } from 'shared/lib/convertToAda/convertToAda'
 
-export const makeCborBuyTokens = async (transferAmountTokens: string, transferAmountFee: string) => {
+export const makeCborBuyTokens = async (transferAmountTokens: string, transferAmountFee: string, fee: number) => {
     const { walletName, address: ownerAddress, balance } = store.getState().wallet
-    if (balance < convertToAda(+transferAmountTokens + +(transferAmountFee))) {
+    if (balance < convertToAda(+transferAmountTokens + +(transferAmountFee) + fee)) {
         notify('Not enough ada to buy', 'error'); return
     }
     const { assetId, policyId, address, rewardAddress, assetQuantity } = store.getState().token
@@ -18,6 +18,6 @@ export const makeCborBuyTokens = async (transferAmountTokens: string, transferAm
     tx.setMetadata(1002, policyId)
     tx.setMetadata(1003, assetId)
     tx.setMetadata(1004, assetQuantity)
-    const unsignedTx = await tx.build().catch(e => { notify(e.message, 'error') })
-    if (unsignedTx) return await wallet.signTx(unsignedTx).catch((e) => { notify(e.message, 'error') })
+    const unsignedTx = await tx.build().catch(e => { notify('Request rejected', 'error') })
+    if (unsignedTx) return await wallet.signTx(unsignedTx).catch(e => { notify('Request rejected', 'error') })
 }

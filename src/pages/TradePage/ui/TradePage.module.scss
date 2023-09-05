@@ -4,8 +4,9 @@
     gap: 20px;
     align-items: center;
     justify-content: center;
-    min-height: calc(100vh - var(--navbar-height));
+
     max-width: 1440px;
+    min-height: calc(100vh - var(--navbar-height));
     margin: 0 auto;
     padding: 20px;
 }

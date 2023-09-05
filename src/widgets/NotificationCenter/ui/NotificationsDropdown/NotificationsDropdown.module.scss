@@ -1,21 +1,25 @@
 .NotificationsDropdown {
-    display: flex;
-    flex-direction: column;
     pointer-events: none;
-    opacity: 0;
+
     position: absolute;
-    width: 600px;
-    background-color: var(--bg-color);
     top: 52px;
     right: 2px;
-    box-shadow: 1px 1px 10px 5px rgb(0 0 0 / 20%);
+
+    display: flex;
+    flex-direction: column;
+
+    width: 600px;
+
+    opacity: 0;
+    background-color: var(--bg-color);
     border-radius: var(--border-radius);
+    box-shadow: 1px 1px 10px 5px rgb(0 0 0 / 20%);
 }
 
 .show {
     pointer-events: auto;
-    transition: opacity .5s;
     opacity: 1;
+    transition: opacity .5s;
 }
 
 .header {
@@ -29,21 +33,23 @@
 }
 
 .notifications {
-    min-height: 400px;
     overflow-y: auto;
-    padding: 20px;
-    max-height: 500px;
     display: flex;
-    gap: 10px;
     flex-direction: column;
+    gap: 10px;
+
+    min-height: 400px;
+    max-height: 500px;
+    padding: 20px;
 }
 
 .nullNotifications {
-    flex: 1;
     display: flex;
-    height: 100%;
+    flex: 1;
     align-items: center;
     justify-content: center;
+
+    height: 100%;
 }
 
 
