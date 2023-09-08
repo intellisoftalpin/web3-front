@@ -8,6 +8,7 @@ import { getAuth } from 'entities/Auth/model/selectors/getAuth/getAuth'
 import { BrowserWallet } from '@meshsdk/core'
 import { getWallet } from 'entities/Wallet/model/selectors/getWallet/getWallet'
 import { authActions } from 'entities/Auth/model/slice/authSlice'
+import { defineNetwork } from 'shared/lib/wallet/defineNetwork'
 
 interface WalletProviderProps {
     children: ReactNode
@@ -26,6 +27,12 @@ export const WalletProvider: FC<WalletProviderProps> = ({ children }) => {
             })
             if (wallet) {
                 const changedAddress = await wallet.getChangeAddress()
+                const network = await wallet.getNetworkId()
+                if (defineNetwork(network) !== process.env.WALLET_NETWORK_KEY) {
+                    notify(`The wallet was disconnected because the main network is ${process.env.WALLET_NETWORK_KEY}, and you have ${defineNetwork(network)} connected`, 'error')
+                    dispatch(authActions.auth({ connected: false }))
+                    dispatch(walletActions.disconnectWallet())
+                }
                 if (address !== '' && changedAddress !== address) {
                     dispatch(authActions.auth({ connected: false }))
                     dispatch(walletActions.disconnectWallet())
