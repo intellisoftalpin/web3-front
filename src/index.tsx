@@ -1,5 +1,4 @@
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
 import { App } from 'app/App'
 import './shared/config/i18n/i18n'
 import { ThemeProvider } from 'app/providers/ThemeProvider'
@@ -14,13 +13,11 @@ root.render(
     <StoreProvider>
         <AuthProvider>
             <WalletProvider>
-                <BrowserRouter>
-                    <ErrorBoundary>
-                        <ThemeProvider>
-                            <App/>
-                        </ThemeProvider>
-                    </ErrorBoundary>
-                </BrowserRouter>
+                <ErrorBoundary>
+                    <ThemeProvider>
+                        <App/>
+                    </ThemeProvider>
+                </ErrorBoundary>
             </WalletProvider>
         </AuthProvider>
     </StoreProvider>
