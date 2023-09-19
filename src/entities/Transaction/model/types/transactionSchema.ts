@@ -1,4 +1,4 @@
-type TypeTransaction = 'received' | 'buy'
+export type TypeTransaction = 'reverse' | 'buy'
 export type StatusTransaction = 'draft' | 'prepared' | 'submitted' | 'success' | 'failed' | 'pending' | 'in_ledger' | 'expired'
 
 export interface HistoryTransaction {
@@ -39,7 +39,7 @@ export interface Transaction {
     hash: string
     id: number
     status: StatusTransaction
-    type: string
+    type: TypeTransaction
     updatedAt: string
     decodedTx: DecotedTx
     decimals: number

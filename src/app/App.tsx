@@ -3,8 +3,6 @@ import 'app/styles/index.scss'
 import 'react-toastify/dist/ReactToastify.css'
 import classNames from 'classnames'
 import { useTheme } from 'app/providers/ThemeProvider'
-import { Navbar } from 'widgets/Navbar'
-import { ToastContainer } from 'react-toastify'
 import { useEffect } from 'react'
 
 export const App = () => {
@@ -18,16 +16,8 @@ export const App = () => {
 
     return (
         <div className={classNames('App', theme)}>
-            <Navbar/>
             <AppRouter/>
-            <ToastContainer
-                theme={theme}
-                bodyClassName='body-toast'
-                toastClassName='toast'
-                autoClose={8000}
-                pauseOnHover
-                newestOnTop
-            />
         </div>
+
     )
 }
