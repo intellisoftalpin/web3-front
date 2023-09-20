@@ -2,6 +2,7 @@ import { useTheme } from 'app/providers/ThemeProvider'
 import { Navbar } from 'widgets/Navbar'
 import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import { AppDescription } from 'widgets/AppDescription/AppDescription'
 
 export const Layout = () => {
     const { theme } = useTheme()
@@ -9,6 +10,7 @@ export const Layout = () => {
     return (
         <>
             <Navbar/>
+            <AppDescription/>
             <Outlet/>
             <ToastContainer
                 theme={theme}

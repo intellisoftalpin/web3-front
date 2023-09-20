@@ -1,10 +1,9 @@
 import { type FC, useEffect } from 'react'
 import cls from './WalletSelection.module.scss'
 import classNames from 'classnames'
-import { BrowserWallet, type DataSignature } from '@meshsdk/core'
+import { BrowserWallet } from '@meshsdk/core'
 import { Button } from 'shared/ui/Button'
 import { useLoginMutation } from '../../api/loginApi'
-import { SIGNATURE_PAYLOAD } from '../../model/consts/signaturePayload'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { walletActions } from 'entities/Wallet'
 import { LOCAL_STORAGE_SESSION_AUTH_KEY, LOCAL_STORAGE_WALLET_KEY } from 'shared/consts/localStorageAuthKey'
@@ -42,12 +41,11 @@ export const WalletSelection: FC<WalletChooseProps> = ({
             const { name, icon } = walletInformation
             const wallet = await BrowserWallet.enable(name).catch(() => { notify('Wallet not authorised', 'error') })
             if (wallet) {
-                const changeAddress = await wallet.getChangeAddress()
-                const signData: DataSignature = await wallet.signData(changeAddress, SIGNATURE_PAYLOAD).catch((e) => { notify(e.info, 'error') })
+                const rewardAddress = await wallet.getRewardAddresses()
 
-                if (signData !== undefined) {
-                    const walletInformation: LocalStorageWallet = { walletName: name, icon, authHash: signData.signature }
-                    await login({ userHash: signData.signature })
+                if (rewardAddress !== undefined) {
+                    const walletInformation: LocalStorageWallet = { walletName: name, icon, authHash: rewardAddress[0] }
+                    await login({ userHash: rewardAddress[0] })
                         .then(() => {
                             dispatch(walletActions.connectWallet(walletInformation))
                             dispatch(authActions.auth({ connected: true }))

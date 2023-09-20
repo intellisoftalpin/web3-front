@@ -8,13 +8,13 @@ export async function getWalletInfo () {
     const walletLocalStorage: LocalStorageWallet = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WALLET_KEY))
     if (walletLocalStorage) {
         const wallet = await BrowserWallet.enable(walletLocalStorage.walletName)
-        const address = await wallet.getChangeAddress()
+        const address: string[] = await wallet.getUsedAddresses()
         const balance = await wallet.getLovelace()
         const network = await wallet.getNetworkId()
         const tokens = await wallet.getAssets()
 
         return {
-            address,
+            address: address[0],
             balance: convertToAda(+balance),
             network: defineNetwork(network),
             tokens

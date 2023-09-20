@@ -19,7 +19,7 @@ export const TransactionList: FC<TransactionListProps> = ({ className }) => {
 
     const { connected } = useAppSelector(getAuth)
 
-    const { data: transactionsResponse, refetch: transactionRefetch } = useGetTransactionsQuery('', { skip: !connected })
+    const { data: transactionsResponse, refetch: transactionRefetch } = useGetTransactionsQuery('', { skip: !connected, pollingInterval: 10000 })
 
     useEffect(() => {
         if (transactionsResponse && connected) {
