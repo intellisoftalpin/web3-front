@@ -5,19 +5,17 @@ import { type NotificationCenterItem } from 'react-toastify/addons/use-notificat
 import { NotificationIcon } from '../NotificationIcon/NotificationIcon'
 import moment from 'moment'
 import { useTranslation } from 'react-i18next'
-import { type Id } from 'react-toastify'
 
 interface NotificationItemProps {
     className?: string
     notification: NotificationCenterItem
-    readNotification: (id: Id, read: boolean) => void
 }
 
-export const NotificationItem: FC<NotificationItemProps> = ({ className, notification, readNotification }) => {
+export const NotificationItem: FC<NotificationItemProps> = ({ className, notification }) => {
     const { i18n } = useTranslation()
 
     return (
-        <div className={classNames(cls.NotificationItem, {}, [className])} onMouseMove={() => { readNotification(notification.id, notification.read) }}>
+        <div className={classNames(cls.NotificationItem, {}, [className])}>
             <div className={cls.iconBlock}>
                 <NotificationIcon theme={notification.theme} type={notification.type} className={cls.icon}/>
             </div>

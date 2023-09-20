@@ -11,7 +11,7 @@ interface NotificationCenterProps {
 }
 
 export const NotificationCenter: FC<NotificationCenterProps> = ({ className }) => {
-    const { notifications, unreadCount, markAsRead } = useNotificationCenter()
+    const { notifications, unreadCount, markAllAsRead } = useNotificationCenter()
     const [isDropdown, setDropdown] = useState(false)
     const ref = useRef(null)
     const outside = useOutsideElement(ref)
@@ -23,6 +23,7 @@ export const NotificationCenter: FC<NotificationCenterProps> = ({ className }) =
     }, [outside])
 
     const openDropdown = () => {
+        markAllAsRead()
         setDropdown(prevState => !prevState)
     }
 
@@ -37,7 +38,7 @@ export const NotificationCenter: FC<NotificationCenterProps> = ({ className }) =
                 }
 
             </div>
-            <NotificationsDropdown isDropdown={isDropdown} notifications={notifications} markAsRead={markAsRead}/>
+            <NotificationsDropdown isDropdown={isDropdown} notifications={notifications}/>
         </div>
     )
 }
