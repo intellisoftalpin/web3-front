@@ -1,7 +1,7 @@
 import { type RouteObject } from 'react-router-dom'
 import { NotFoundPage } from 'pages/NotFoundPage'
 import { TradePage } from 'pages/TradePage'
-import { Layout } from 'shared/ui/Layout/Layout'
+import { Layout } from 'app/providers/Layout/Layout'
 
 export enum AppRoutes {
     TRADE = 'trade',

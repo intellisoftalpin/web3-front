@@ -26,14 +26,14 @@ export const WalletProvider: FC<WalletProviderProps> = ({ children }) => {
                 dispatch(walletActions.disconnectWallet())
             })
             if (wallet) {
-                const changedAddress = await wallet.getChangeAddress()
+                const changedAddress: string[] = await wallet.getUsedAddresses()
                 const network = await wallet.getNetworkId()
                 if (defineNetwork(network) !== process.env.WALLET_NETWORK_KEY) {
                     notify(`The wallet was disconnected because the main network is ${process.env.WALLET_NETWORK_KEY}, and you have ${defineNetwork(network)} connected`, 'error')
                     dispatch(authActions.auth({ connected: false }))
                     dispatch(walletActions.disconnectWallet())
                 }
-                if (address !== '' && changedAddress !== address) {
+                if (address !== '' && changedAddress[0] !== address) {
                     dispatch(authActions.auth({ connected: false }))
                     dispatch(walletActions.disconnectWallet())
                 } else {
