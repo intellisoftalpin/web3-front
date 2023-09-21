@@ -14,9 +14,25 @@
     }
 }
 
+.arrowBlock {
+    padding: 5px 6px;
+    background-color: var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+
+    &:hover {
+        background-color: var(--inverted-bg-color);
+        .arrow {
+            & > path {
+                fill: var(--inverted-bg-color);
+                stroke: var(--bg-color);
+            }
+        }
+    }
+}
+
 .arrow {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 
     & > path {
         fill: var(--secondary-bg-color);

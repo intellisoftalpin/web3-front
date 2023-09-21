@@ -38,7 +38,7 @@ export const TransactionList: FC<TransactionListProps> = ({ className }) => {
 
     const transactionItems = transactions.map(item => <TransactionItem key={item.id} transaction={item}/>)
 
-    if (!connected) return null
+    if (!connected || transactions.length === 0) return null
 
     return (
         <div className={classNames(cls.TransactionList, {}, [className])}>
