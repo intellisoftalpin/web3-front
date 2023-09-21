@@ -60,7 +60,9 @@ export const OtherWallets: FC<OtherWalletsProps> = ({ className }) => {
             {installedWallets.length > 0 &&
                 <div className={cls.header} onClick={openHandler}>
                     <span>{t('Other wallets')}:</span>
-                    <Arrow className={classNames(cls.arrow, { [cls.arrowActive]: openWallets })}/>
+                    <div className={cls.arrowBlock}>
+                        <Arrow className={classNames(cls.arrow, { [cls.arrowActive]: openWallets })}/>
+                    </div>
                 </div>
             }
             {openWallets &&

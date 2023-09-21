@@ -20,7 +20,7 @@ interface WalletDropdownProps {
 
 export const WalletDropdown: FC<WalletDropdownProps> = ({ className, openedDropdown }) => {
     const { t } = useTranslation()
-    const { walletName, icon, address, network } = useAppSelector(getWallet)
+    const { walletName, icon, address, network, tokens } = useAppSelector(getWallet)
     const dispatch = useAppDispatch()
 
     const disconnectWallet = () => {
@@ -48,10 +48,12 @@ export const WalletDropdown: FC<WalletDropdownProps> = ({ className, openedDropd
                     </div>
                 </div>
             </div>
-            <div className={cls.tokens}>
-                <h1>{t('Tokens')}</h1>
-                <WalletTokens/>
-            </div>
+            {tokens.length !== 0 &&
+                <div className={cls.tokens}>
+                    <h1>{t('Tokens')}</h1>
+                    <WalletTokens/>
+                </div>
+            }
             <div className={cls.disconnect}>
                 <Button variant='outline' className={cls.disconnectButton} onClick={disconnectWallet}>
                     {t('Disconnect wallet')}
