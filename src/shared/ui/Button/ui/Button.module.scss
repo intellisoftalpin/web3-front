@@ -9,6 +9,15 @@
     outline: 0;
 }
 
+.Button:disabled,
+.Button[disabled]{
+    cursor: default;
+    background-color: var(--help-bg-color);
+    &:hover {
+        background-color: var(--help-bg-color);
+    }
+}
+
 .outline {
     padding: 10px 20px;
 

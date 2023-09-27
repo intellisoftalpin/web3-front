@@ -58,5 +58,7 @@
   "Available Balance": "Available Balance",
   "Active Wallet": "Active Wallet",
   "Tokens": "Tokens",
-  "Disconnect wallet": "Disconnect wallet"
+  "Disconnect wallet": "Disconnect wallet",
+  "Delegate": "Delegate",
+  "Transaction pending": "Transaction pending..."
 }

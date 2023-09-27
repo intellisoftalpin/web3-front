@@ -1,5 +1,6 @@
 import { baseApi } from 'shared/api/baseApi'
 import {
+    type ActiveTransaction,
     type ChangeTransactionStatus,
     type DeleteTransactionResponse,
     type ResponseSaveTransaction,
@@ -19,6 +20,12 @@ export const transactionApi = baseApi.injectEndpoints({
         getSingleTransaction: build.query<SingleTransaction, number>({
             query: (transactionId) => ({
                 url: `api/v1/transactions/${transactionId}`,
+                method: 'GET'
+            })
+        }),
+        getTransactionActive: build.query<ActiveTransaction, string>({
+            query: () => ({
+                url: 'api/v1/transactions/active',
                 method: 'GET'
             })
         }),
@@ -80,5 +87,6 @@ export const {
     useDeleteTransactionMutation,
     useUpdateTransactionMutation,
     useGetSingleTransactionQuery,
-    useGetTransactionsQuery
+    useGetTransactionsQuery,
+    useGetTransactionActiveQuery
 } = transactionApi

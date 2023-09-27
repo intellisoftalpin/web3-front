@@ -17,7 +17,7 @@ import {
 import { type RequestTransaction } from 'entities/Transaction/model/types/transactionSchema'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { notify } from 'shared/lib/notify/notify'
-import { useSaveTransactionMutation } from 'entities/Transaction'
+import { useGetTransactionActiveQuery, useSaveTransactionMutation } from 'entities/Transaction'
 import { convertToLovelaces } from 'shared/lib/convertToLovalaces/convertToLovelaces'
 import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/convertCountWithDecimals'
 import { Tooltip } from 'shared/ui/Tooltip'
@@ -37,10 +37,18 @@ export const Trade: FC<TradeProps> = ({ className }) => {
         totalQuantity
     } = useAppSelector(getToken)
     const [openModal, setOpenModal] = useState(false)
+    const [isBusyTransaction, setBusyTransaction] = useState(true)
     const [choiceTokenModal, setChoiceTokenModal] = useState(false)
 
     const { data: tokens } = useGetTokensQuery('', { pollingInterval: 20000 })
     const [saveTransaction] = useSaveTransactionMutation()
+    const { data: transactionPending } = useGetTransactionActiveQuery('', { skip: !isBusyTransaction, pollingInterval: 10000 })
+
+    useEffect(() => {
+        if (transactionPending) {
+            setBusyTransaction(transactionPending.isBusy)
+        }
+    }, [transactionPending])
 
     useEffect(() => {
         if (tokens) {
@@ -69,7 +77,10 @@ export const Trade: FC<TradeProps> = ({ className }) => {
                     transferAmount: String(convertToLovelaces(+sumTransferAmount())),
                     assetAmount: String(assetQuantity)
                 }
-                await saveTransaction({ type: 'buy', data }).then(() => { notify('Transaction created', 'success') })
+                await saveTransaction({ type: 'buy', data }).then(() => {
+                    setBusyTransaction(true)
+                    notify('Transaction created', 'success')
+                })
             }
         } catch (e) {
             console.log(e)
@@ -170,9 +181,9 @@ export const Trade: FC<TradeProps> = ({ className }) => {
             </div>
             <div className={cls.deposit}>
                 {connected
-                    ? <Button variant="outline" onClick={async () => {
+                    ? <Button disabled={isBusyTransaction} variant="outline" onClick={async () => {
                         await createTransactionBuyTokens()
-                    }}>{t('Buy')}</Button>
+                    }}>{isBusyTransaction ? t('Transaction pending') : t('Buy')}</Button>
                     : <Button variant="outline" onClick={() => {
                         setOpenModal(true)
                     }}>{t('wallet connect button')}</Button>
