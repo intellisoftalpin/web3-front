@@ -59,5 +59,7 @@
   "Available Balance": "Доступный баланс",
   "Active Wallet": "Активный кошелек",
   "Tokens": "Монеты",
-  "Disconnect wallet": "Отключить кошелек"
+  "Disconnect wallet": "Отключить кошелек",
+  "Delegate": "Delegate",
+  "Transaction pending": "Транзакция в ожидании..."
 }

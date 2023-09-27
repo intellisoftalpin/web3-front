@@ -53,6 +53,10 @@ export interface SingleTransaction extends Transaction {
     transferAmount: string
 }
 
+export interface ActiveTransaction {
+    isBusy: boolean
+}
+
 export interface TransactionsResponse {
     transactions: Transaction[]
 }
