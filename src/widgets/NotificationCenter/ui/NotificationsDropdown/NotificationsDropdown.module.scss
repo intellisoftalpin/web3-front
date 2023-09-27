@@ -1,0 +1,55 @@
+.NotificationsDropdown {
+    pointer-events: none;
+
+    position: absolute;
+    top: 52px;
+    right: 2px;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 600px;
+
+    opacity: 0;
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: 1px 1px 10px 5px rgb(0 0 0 / 20%);
+}
+
+.show {
+    pointer-events: auto;
+    opacity: 1;
+    transition: opacity .5s;
+}
+
+.header {
+    padding: 16px;
+    background-color: var(--secondary-bg-color);
+    border-radius: 10px 10px 0 0;
+
+    h2{
+        font-size: var(--font-size-l);
+    }
+}
+
+.notifications {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    min-height: 400px;
+    max-height: 500px;
+    padding: 20px;
+}
+
+.nullNotifications {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+}
+
+

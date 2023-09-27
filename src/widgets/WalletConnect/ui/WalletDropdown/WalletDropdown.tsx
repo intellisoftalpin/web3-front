@@ -11,6 +11,7 @@ import { authActions } from 'entities/Auth/model/slice/authSlice'
 import { walletActions } from 'entities/Wallet'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { WalletTokens } from 'widgets/WalletConnect/ui/WalletTokens/WalletTokens'
+import { useTranslation } from 'react-i18next'
 
 interface WalletDropdownProps {
     className?: string
@@ -18,7 +19,8 @@ interface WalletDropdownProps {
 }
 
 export const WalletDropdown: FC<WalletDropdownProps> = ({ className, openedDropdown }) => {
-    const { walletName, icon, address, network } = useAppSelector(getWallet)
+    const { t } = useTranslation()
+    const { walletName, icon, address, network, tokens } = useAppSelector(getWallet)
     const dispatch = useAppDispatch()
 
     const disconnectWallet = () => {
@@ -29,7 +31,7 @@ export const WalletDropdown: FC<WalletDropdownProps> = ({ className, openedDropd
     return (
         <div className={classNames(cls.WalletDropdown, { [cls.show]: openedDropdown }, [className])}>
             <div className={cls.activeWallet}>
-                <h1>Active Wallet</h1>
+                <h1>{t('Active Wallet')}</h1>
                 <div className={cls.walletInformation}>
                     <div className={cls.connectedWallet}>
                         <div className={cls.name}>
@@ -46,13 +48,15 @@ export const WalletDropdown: FC<WalletDropdownProps> = ({ className, openedDropd
                     </div>
                 </div>
             </div>
-            <div className={cls.tokens}>
-                <h1>Tokens</h1>
-                <WalletTokens/>
-            </div>
+            {tokens.length !== 0 &&
+                <div className={cls.tokens}>
+                    <h1>{t('Tokens')}</h1>
+                    <WalletTokens/>
+                </div>
+            }
             <div className={cls.disconnect}>
-                <Button variant='filled' className={cls.disconnectButton} onClick={disconnectWallet}>
-                    Disconnect wallet
+                <Button variant='outline' className={cls.disconnectButton} onClick={disconnectWallet}>
+                    {t('Disconnect wallet')}
                 </Button>
             </div>
         </div>

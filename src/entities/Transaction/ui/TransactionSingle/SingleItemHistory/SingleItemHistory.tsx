@@ -6,6 +6,7 @@ import { convertToAda } from 'shared/lib/convertToAda/convertToAda'
 import { type HistoryTransaction } from 'entities/Transaction/model/types/transactionSchema'
 import { hexToString } from 'shared/lib/hexToString/hexToString'
 import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/convertCountWithDecimals'
+import { TokenImage } from 'shared/ui/TokenImage'
 
 interface SingleItemHistoryProps {
     className?: string
@@ -36,6 +37,7 @@ export const SingleItemHistory: FC<SingleItemHistoryProps> = ({
                         <div className={cls.tokenBuy}>
                             {assets.map(item =>
                                 <div className={cls.token} key={`${item.policy_id}${item.asset_name}`}>
+                                    <TokenImage assetId={item.asset_name} policyId={item.policy_id} className={cls.tokenImage}/>
                                     <span>{hexToString(item.asset_name)}</span>
                                     <span className={cls.quantityTokens}>{convertCountWithDecimals(item.quantity, decimals)}</span>
                                 </div>

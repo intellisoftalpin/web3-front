@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { LangSwitcher } from 'widgets/LangSwitcher'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import { WalletConnect } from 'widgets/WalletConnect'
+import { NotificationCenter } from 'widgets/NotificationCenter'
 
 interface NavbarProps {
     className?: string
@@ -21,14 +22,12 @@ export const Navbar: FC<NavbarProps> = ({ className }) => {
                 <AppLink to={RoutesPath.trade}>
                     {t('Buy')}
                 </AppLink>
-                <AppLink to={RoutesPath.overview}>
-                    {t('Overview')}
-                </AppLink>
             </nav>
             <div className={cls.appFeatures}>
                 <WalletConnect/>
                 <ThemeSwitcher/>
                 <LangSwitcher/>
+                <NotificationCenter/>
             </div>
         </header>
     )

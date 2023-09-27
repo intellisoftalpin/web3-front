@@ -7,15 +7,17 @@
 
     border-radius: var(--border-radius);
 
+    transition: background-color 0.5s;
+
     &:hover {
         background-color: var(--bg-color);
-        transition: background-color 0.4s;
+
     }
 }
 
 .AppLink.active {
     color: var(--accent-color);
     background-color: var(--bg-color);
-    transition: color 0.4s;
+    transition: color, background-color 0.5s;
 }
 

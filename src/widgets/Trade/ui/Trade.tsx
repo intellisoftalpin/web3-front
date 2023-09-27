@@ -21,6 +21,7 @@ import { useSaveTransactionMutation } from 'entities/Transaction'
 import { convertToLovelaces } from 'shared/lib/convertToLovalaces/convertToLovelaces'
 import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/convertCountWithDecimals'
 import { Tooltip } from 'shared/ui/Tooltip'
+import { TokenImage } from 'shared/ui/TokenImage'
 
 interface TradeProps {
     className?: string
@@ -58,20 +59,20 @@ export const Trade: FC<TradeProps> = ({ className }) => {
         try {
             const transferAmountTokens = String(tokenPrice.price)
             const transferAmountFee = String(deposit + processingFee)
-            const cbor = await makeCborBuyTokens(transferAmountTokens, transferAmountFee)
-            const data: RequestTransaction = {
-                addressTo: address,
-                policyId,
-                assetId,
-                cbor,
-                transferAmount: String(convertToLovelaces(+sumTransferAmount())),
-                assetAmount: String(assetQuantity)
+            const cbor = await makeCborBuyTokens(transferAmountTokens, transferAmountFee, fee)
+            if (cbor) {
+                const data: RequestTransaction = {
+                    addressTo: address,
+                    policyId,
+                    assetId,
+                    cbor,
+                    transferAmount: String(convertToLovelaces(+sumTransferAmount())),
+                    assetAmount: String(assetQuantity)
+                }
+                await saveTransaction({ type: 'buy', data }).then(() => { notify('Transaction created', 'success') })
             }
-            await saveTransaction({ type: 'buy', data })
-        } catch (e: any) {
-            if (e instanceof Error) {
-                notify(e.message, 'error')
-            }
+        } catch (e) {
+            console.log(e)
         }
     }
 
@@ -95,7 +96,7 @@ export const Trade: FC<TradeProps> = ({ className }) => {
                     onClick={openTokenModal}>
                     <span>{t('Buy')}</span>
                     <div className={cls.assetImage}>
-                        {logo && <img src={logo} alt={assetName}/>}
+                        <TokenImage logo={logo} policyId={policyId} assetId={assetId}/>
                         <span>{assetName}</span>
                     </div>
                     {tokensCheck && <Arrow className={cls.arrow}/>}

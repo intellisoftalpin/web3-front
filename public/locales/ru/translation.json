@@ -53,5 +53,11 @@
   "Returned Amount": "Возвращенная сумма",
   "Returned Amount Tooltip": "Количество возвращенной ADA и количество токенов",
   "Full payment amount Tooltip": "Реальная сумма оплаты, не учитывая депозит",
-  "and": "и"
+  "and": "и",
+  "Notifications logs": "Логи нотификаций",
+  "Notifications are missing": "Нотификации отсуствуют",
+  "Available Balance": "Доступный баланс",
+  "Active Wallet": "Активный кошелек",
+  "Tokens": "Монеты",
+  "Disconnect wallet": "Отключить кошелек"
 }

@@ -19,7 +19,7 @@ export const TransactionList: FC<TransactionListProps> = ({ className }) => {
 
     const { connected } = useAppSelector(getAuth)
 
-    const { data: transactionsResponse, refetch: transactionRefetch } = useGetTransactionsQuery('', { skip: !connected })
+    const { data: transactionsResponse, refetch: transactionRefetch } = useGetTransactionsQuery('', { skip: !connected, pollingInterval: 10000 })
 
     useEffect(() => {
         if (transactionsResponse && connected) {
@@ -30,17 +30,23 @@ export const TransactionList: FC<TransactionListProps> = ({ className }) => {
         }
     }, [connected, transactionsResponse])
 
+    useEffect(() => {
+        if (connected) {
+            transactionRefetch().catch(console.log)
+        }
+    }, [connected, transactionRefetch])
+
     const transactionItems = transactions.map(item => <TransactionItem key={item.id} transaction={item}/>)
+
+    if (!connected || transactions.length === 0) return null
 
     return (
         <div className={classNames(cls.TransactionList, {}, [className])}>
             <div className={cls.header}>
                 <h1>{t('Recent Transactions')}</h1>
-                {connected &&
-                    <div className={cls.refresh} onClick={transactionRefetch}>
-                        <Refresh className={cls.refreshIcon}/>
-                    </div>
-                }
+                <div className={cls.refresh} onClick={transactionRefetch}>
+                    <Refresh className={cls.refreshIcon}/>
+                </div>
             </div>
             <div className={cls.transactions}>
                 {transactionItems}

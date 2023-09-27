@@ -1,31 +1,26 @@
-import { type RouteProps } from 'react-router-dom'
+import { type RouteObject } from 'react-router-dom'
 import { NotFoundPage } from 'pages/NotFoundPage'
-import { OverviewPage } from 'pages/OverviewPage'
 import { TradePage } from 'pages/TradePage'
+import { Layout } from 'app/providers/Layout/Layout'
 
 export enum AppRoutes {
     TRADE = 'trade',
-    OVERVIEW = 'overview',
-    NOT_FOUND = 'not_found'
 }
 
 export const RoutesPath: Record<AppRoutes, string> = {
-    [AppRoutes.TRADE]: '/',
-    [AppRoutes.OVERVIEW]: '/overview',
-    [AppRoutes.NOT_FOUND]: '*'
+    [AppRoutes.TRADE]: '/'
 }
 
-export const routesConfig: Record<AppRoutes, RouteProps> = {
-    [AppRoutes.TRADE]: {
-        path: RoutesPath.trade,
-        element: <TradePage/>
-    },
-    [AppRoutes.OVERVIEW]: {
-        path: RoutesPath.overview,
-        element: <OverviewPage/>
-    },
-    [AppRoutes.NOT_FOUND]: {
-        path: RoutesPath.not_found,
-        element: <NotFoundPage/>
+export const routesConfig: RouteObject[] = [
+    {
+        path: '/',
+        element: <Layout/>,
+        errorElement: <NotFoundPage/>,
+        children: [
+            {
+                path: RoutesPath.trade,
+                element: <TradePage/>
+            }
+        ]
     }
-}
+]

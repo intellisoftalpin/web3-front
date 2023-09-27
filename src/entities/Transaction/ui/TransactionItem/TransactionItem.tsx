@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next'
 import { copyText } from 'shared/lib/copyText/copyText'
 import { notify } from 'shared/lib/notify/notify'
 import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/convertCountWithDecimals'
+import { TokenImage } from 'shared/ui/TokenImage'
 
 interface TransactionItemProps {
     className?: string
@@ -36,7 +37,9 @@ export const TransactionItem: FC<TransactionItemProps> = ({
     const [singleTransaction, setSingleTransaction] = useState(false)
 
     const deleteTransactionHandler = async () => {
-        await deleteTransaction(transaction.id).unwrap().then((e) => { notify(e.message, 'success') })
+        await deleteTransaction(transaction.id).unwrap().then((e) => {
+            notify(e.message, 'success')
+        })
     }
 
     return (
@@ -46,8 +49,8 @@ export const TransactionItem: FC<TransactionItemProps> = ({
                     <div className={cls.transactionInfo}>
                         <div className={cls.status}>
                             <Arrow className={classNames(cls.arrow, {
-                                [cls.arrowSent]: transaction.type === 'Sent' || transaction.type === 'buy',
-                                [cls.arrowReceived]: transaction.type === 'received' || transaction.type === 'reverse'
+                                [cls.arrowSent]: transaction.type === 'buy',
+                                [cls.arrowReceived]: transaction.type === 'reverse'
                             })}/>
                             <span className={cls.statusText}>{t(transaction.status)} ({t(transaction.type)})</span>
                         </div>
@@ -75,8 +78,8 @@ export const TransactionItem: FC<TransactionItemProps> = ({
                         <div className={cls.amountAda}>
                             <span className={
                                 classNames({
-                                    [cls.buy]: transaction.type === 'Sent' || transaction.type === 'buy',
-                                    [cls.reverse]: transaction.type === 'received' || transaction.type === 'reverse'
+                                    [cls.buy]: transaction.type === 'buy',
+                                    [cls.reverse]: transaction.type === 'reverse'
                                 })}
                             >
                                 {convertToAda(+transaction.transferAmount)}{'₳'}
@@ -90,11 +93,14 @@ export const TransactionItem: FC<TransactionItemProps> = ({
                             <div className={cls.tokenBuy}>
                                 <div className={cls.token}>
                                     <Arrow className={classNames(cls.arrow, {
-                                        [cls.arrowSent]: transaction.type === 'Sent' || transaction.type === 'buy',
-                                        [cls.arrowReceived]: transaction.type === 'received' || transaction.type === 'reverse'
+                                        [cls.arrowSent]: transaction.type === 'buy',
+                                        [cls.arrowReceived]: transaction.type === 'reverse'
                                     })}/>
+                                    <TokenImage assetId={transaction.assetId} policyId={transaction.policyId}
+                                        className={cls.tokenImage}/>
                                     <span>{hexToString(transaction.assetId)}</span>
-                                    <span className={cls.amount}>{convertCountWithDecimals(+transaction.assetAmount, transaction.decimals)}</span>
+                                    <span
+                                        className={cls.amount}>{convertCountWithDecimals(+transaction.assetAmount, transaction.decimals)}</span>
                                 </div>
                             </div>
                         }

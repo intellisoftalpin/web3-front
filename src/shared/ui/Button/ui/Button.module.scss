@@ -11,15 +11,18 @@
 
 .outline {
     padding: 10px 20px;
+
     color: var(--primary-color);
+
     background-color: var(--bg-color);
-    border: 1px solid var(--accent-color);
+    border: 1px solid var(--inverted-bg-color);
+
+    transition: background-color 0.2s;
 
     &:hover {
-        color: var(--inverted-primary-color);
-        background-color: var(--inverted-bg-color);
-        border: 1px solid var(--accent-color);
-        transition: background-color 0.4s;
+        background-color: var(--help-bg-color);
+        border: 1px solid var(--inverted-bg-color);
+
     }
 }
 
@@ -33,12 +36,11 @@
     padding: 10px 20px;
     color: var(--inverted-primary-color);
     background-color: var(--inverted-bg-color);
+    transition: background-color, color 0.5s;
 
     &:hover {
         color: var(--primary-color);
         background-color: var(--bg-color);
         box-shadow: 1px 1px 10px 5px rgb(0 0 0 / 20%);
-        transition: background-color, color 0.4s;
-
     }
 }

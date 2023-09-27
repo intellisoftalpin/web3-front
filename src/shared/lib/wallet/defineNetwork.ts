@@ -4,6 +4,6 @@ export const defineNetwork = (networkId: number) => {
     } else if (networkId === 0) {
         return 'testnet'
     } else {
-        return 'undefined'
+        return 'unidentified net'
     }
 }

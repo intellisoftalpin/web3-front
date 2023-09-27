@@ -1,0 +1,52 @@
+.NotificationItem {
+    position: relative;
+
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    padding: 14px;
+
+    background-color: var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+}
+
+.iconBlock {
+
+}
+
+.icon {
+    width: 34px;
+    height: 34px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    p {
+        font-size: var(--font-size-s);
+        font-weight: 600;
+    }
+
+    span {
+        font-size: var(--font-size-s);
+    }
+}
+
+.unread {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    width: 10px;
+    height: 10px;
+
+    background-color: var(--accent-color);
+    border-radius: 100px;
+}
+
+.read {
+    display: none;
+}
