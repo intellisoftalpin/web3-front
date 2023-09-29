@@ -13,10 +13,12 @@ export async function getWalletInfo () {
         const network = await wallet.getNetworkId()
         const tokens = await wallet.getAssets()
 
+        const definedNetwork = window?._env_?.WALLET_NETWORK_KEY ? defineNetwork(network, window._env_.WALLET_NETWORK_KEY) : defineNetwork(network, process.env.WALLET_NETWORK_KEY)
+
         return {
             address: address[0],
             balance: convertToAda(+balance),
-            network: defineNetwork(network),
+            network: definedNetwork,
             tokens
         }
     }
