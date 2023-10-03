@@ -42,7 +42,7 @@ export const Trade: FC<TradeProps> = ({ className }) => {
 
     const { data: tokens } = useGetTokensQuery('', { pollingInterval: 20000 })
     const [saveTransaction] = useSaveTransactionMutation()
-    const { data: transactionPending } = useGetTransactionActiveQuery('', { skip: !isBusyTransaction, pollingInterval: 10000 })
+    const { data: transactionPending } = useGetTransactionActiveQuery('', { skip: !isBusyTransaction || !connected, pollingInterval: 10000 })
 
     useEffect(() => {
         if (transactionPending) {
