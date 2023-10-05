@@ -5,7 +5,8 @@
     border-radius: var(--border-radius);
     padding: 20px;
     gap: 20px;
-    max-width: 900px;
+    max-width: 700px;
+    min-width: 700px;
 }
 
 .titleInformation {
@@ -40,6 +41,15 @@
 
 }
 
+.description {
+    p {
+        display: flex;
+        text-align: center;
+        font-size: var(--font-size-s);
+        line-height: 1.5;
+    }
+}
+
 .poolAddress {
     span {
         font-size: var(--font-size-s);
@@ -58,6 +68,11 @@
 .informationItem {
     display: flex;
     justify-content: space-between;
+}
+
+.delegated {
+    padding: 10px;
+    color: var(--accent-color);
 }
 
 .delegateButton {

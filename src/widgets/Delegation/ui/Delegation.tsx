@@ -13,7 +13,7 @@ export const Delegation: FC<DelegationProps> = ({ className }) => {
     return (
         <div className={classNames(cls.Delegation, {}, [className])}>
             {dataPools?.pools.map((pool) =>
-                <DelegationPool pool={pool} key={pool.poolId}/>
+                <DelegationPool poolId={pool.poolId} key={pool.poolId}/>
             )}
         </div>
     )
