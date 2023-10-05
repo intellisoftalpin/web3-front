@@ -16,6 +16,7 @@ import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/co
 import { getAuth } from 'entities/Auth/model/selectors/getAuth/getAuth'
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getWallet } from 'entities/Wallet/model/selectors/getWallet/getWallet'
+import { SocialLinks } from './SocialLinks/SocialLinks'
 
 interface DelegationPoolProps {
     className?: string
@@ -35,14 +36,12 @@ export const DelegationPool: FC<DelegationPoolProps> = ({ className, poolId }) =
             const wallet = await BrowserWallet.enable(walletName)
             const rewardAddress = await wallet.getRewardAddresses()
 
-            console.log(rewardAddress)
-
             const tx = new Transaction({ initiator: wallet })
             tx.delegateStake(rewardAddress[0], poolId)
 
             const unsignedTx = await tx.build()
             const signedTx = await wallet.signTx(unsignedTx)
-            await conductDelegation({ cbor: signedTx })
+            await conductDelegation({ cbor: signedTx }).then(() => { notify('Delegation transaction successfully created', 'success') })
         } catch (e) {
             notify(e.toString(), 'error')
         }
@@ -58,10 +57,10 @@ export const DelegationPool: FC<DelegationPoolProps> = ({ className, poolId }) =
                     <div className={cls.poolName}>
                         <div className={cls.name}>
                             <a href={pool.tickerJSON.homepage} target='_blank' rel="noreferrer">[{pool.tickerJSON.ticker}] {pool.tickerJSON.name}</a>
-                            {/* <SocialLinks social={pool.metadata.info.social}/> */}
+                            <SocialLinks social={pool.metadata.info.social}/>
                         </div>
                         <div className={cls.poolAddress}>
-                            <a href={`https://cardanoscan.io/pool/${pool.view}`} target='_blank' rel="noreferrer" >{pool.view}</a>
+                            <a href={`https://cardanoscan.io/pool/${pool.view}`} target='_blank' rel="noreferrer">{pool.view}</a>
                         </div>
                     </div>
                 </div>
