@@ -1,5 +1,12 @@
 import { DelegationPool } from './ui/DelegationPool'
-import { useGetPoolsQuery } from './api/delegationApi'
-import { type DelegationPoolSchema } from 'entities/DelegationPool/model/types/delegationSchema'
+import { useGetPoolByIdQuery, useGetPoolsQuery, useGetCurrentPoolDelegatedQuery, useDelegateToPoolMutation } from './api/delegationApi'
+import { type DelegationPoolSchema } from './model/types/delegationSchema'
 
-export { DelegationPool, useGetPoolsQuery, type DelegationPoolSchema }
+export {
+    DelegationPool,
+    useGetPoolsQuery,
+    useGetPoolByIdQuery,
+    useGetCurrentPoolDelegatedQuery,
+    useDelegateToPoolMutation,
+    type DelegationPoolSchema
+}
