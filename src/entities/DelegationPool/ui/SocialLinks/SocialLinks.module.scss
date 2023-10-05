@@ -1,0 +1,20 @@
+.SocialLinks {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.iconLink {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+
+    fill: var(--inverted-bg-color);
+
+    transition: fill .2s;
+
+    &:hover {
+        fill: var(--accent-color);
+    }
+}
