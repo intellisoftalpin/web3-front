@@ -7,7 +7,6 @@
   "Trade": "Trade",
   "wallet connect button": "Connect to a wallet",
   "Change theme": "Change theme",
-  "Buy": "Buy",
   "Token": "Token",
   "Available balance": "Available balance",
   "Wallet balance": "Wallet balance",
@@ -59,6 +58,6 @@
   "Active Wallet": "Active Wallet",
   "Tokens": "Tokens",
   "Disconnect wallet": "Disconnect wallet",
-  "Delegate": "Delegate",
+  "delegate": "Delegate",
   "Transaction pending": "Transaction pending..."
 }
