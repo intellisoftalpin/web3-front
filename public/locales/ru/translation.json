@@ -7,7 +7,6 @@
   "Trade": "Обменять",
   "wallet connect button": "Подключиться к кошельку",
   "Change theme": "Сменить тему",
-  "Buy": "Купить",
   "Token": "Монета",
   "Available balance": "Доступный баланс",
   "Wallet balance": "Баланс кошелька",
@@ -60,6 +59,6 @@
   "Active Wallet": "Активный кошелек",
   "Tokens": "Монеты",
   "Disconnect wallet": "Отключить кошелек",
-  "Delegate": "Delegate",
+  "delegate": "Делегирование",
   "Transaction pending": "Транзакция в ожидании..."
 }
