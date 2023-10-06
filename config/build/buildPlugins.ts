@@ -31,7 +31,7 @@ export function buildPlugins ({ paths, isDev }: BuildOptions): webpack.WebpackPl
             __IS_DEV__: JSON.stringify(isDev)
         }),
         new Dotenv({
-            safe: true,
+            safe: false,
             defaults: true
         })
     ]
