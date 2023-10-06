@@ -31,7 +31,12 @@ const defaultRoutes = [
 
 export function createRoutes (): RouteObject[] {
     if (window?._env_?.ACTIONS === '' || window?._env_?.ACTIONS === undefined) return defaultRoutes
-    return window?._env_?.ACTIONS.split(' ').join('').split(',').map(item => defaultRoutes.find(defRoute => defRoute.id === item))
+    const actions = window?._env_?.ACTIONS.split(' ').join('').split(',')
+    return actions.map((item) => {
+        const route = defaultRoutes.find(defRoute => defRoute.id === item)
+        if (actions.length === 1) route.path = '/'
+        return route
+    })
 }
 
 export const routesConfig: RouteObject[] = [
