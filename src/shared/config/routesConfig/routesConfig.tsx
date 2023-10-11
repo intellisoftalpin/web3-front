@@ -10,7 +10,7 @@ export enum AppRoutes {
 }
 
 export const RoutesPath: Record<AppRoutes, string> = {
-    [AppRoutes.TRADE]: '/',
+    [AppRoutes.TRADE]: 'buy',
     [AppRoutes.DELEGATE]: 'delegate'
 }
 
@@ -30,11 +30,19 @@ const defaultRoutes = [
 ]
 
 export function createRoutes (): RouteObject[] {
-    if (window?._env_?.ACTIONS === '' || window?._env_?.ACTIONS === undefined) return defaultRoutes
+    if (window?._env_?.ACTIONS === '' || window?._env_?.ACTIONS === undefined) {
+        return defaultRoutes.map((item, index) => {
+            if (index === 0) {
+                item.path = '/'
+            }
+            return item
+        })
+    }
     const actions = window?._env_?.ACTIONS.split(' ').join('').split(',')
-    return actions.map((item) => {
+    return actions.map((item, index) => {
         const route = defaultRoutes.find(defRoute => defRoute.id === item)
         if (actions.length === 1) route.path = '/'
+        else if (index === 0) route.path = '/'
         return route
     })
 }
