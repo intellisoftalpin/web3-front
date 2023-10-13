@@ -41,6 +41,7 @@
   "received": "Received",
   "reverse": "Reverse",
   "Sent": "Sent",
+  "Buy": "Buy",
   "buy": "Buy",
   "Amount Spent Tooltip": "The amount you spend on this transaction (without fees). Open the transaction details to see the fees tied to this transaction.",
   "Fee Tooltip": "An ADA fee paid to the Cardano network to list your order. The exact amount is calculated in the next step.",

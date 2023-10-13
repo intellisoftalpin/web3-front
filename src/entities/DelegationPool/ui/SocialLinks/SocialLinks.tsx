@@ -2,11 +2,12 @@ import React, { type FC, useEffect, useState } from 'react'
 import cls from './SocialLinks.module.scss'
 import classNames from 'classnames'
 import { type Social } from '../../model/types/delegationSchema'
-import { Discord, Facebook, Github, Telegram, Twitch, Twitter, Youtube } from 'shared/assets/social'
+import { Discord, Facebook, Github, Telegram, Twitch, Twitter, Youtube, Web } from 'shared/assets/social'
 
 interface SocialLinksProps {
     className?: string
     social: Social
+    homepage: string | undefined
 }
 
 interface SocialLink {
@@ -55,7 +56,7 @@ const defaultLinks: Array<{ name: string, Icon: React.VFC<React.SVGProps<SVGSVGE
 
 ]
 
-export const SocialLinks: FC<SocialLinksProps> = ({ className, social }) => {
+export const SocialLinks: FC<SocialLinksProps> = ({ className, social, homepage }) => {
     const [socialLinks, setSocialLinks] = useState<[] | SocialLink[]>([])
 
     useEffect(() => {
@@ -67,11 +68,17 @@ export const SocialLinks: FC<SocialLinksProps> = ({ className, social }) => {
             // @ts-expect-error
             return { ...defaultLinks.find(defLink => defLink.name === item.replace('_handle', '')), link_handle: social[item] }
         })
-        setSocialLinks(usedLinks)
+        setSocialLinks(usedLinks as SocialLink[])
     }, [social])
 
     return (
         <div className={classNames(cls.SocialLinks, {}, [className])}>
+            {
+                homepage &&
+                <a href={homepage} target='_blank' rel="noreferrer">
+                    <Web className={cls.iconLink}/>
+                </a>
+            }
             {socialLinks.map(item =>
                 <div className={cls.socialLink} key={item.link}>
                     <a href={`${item.link}${item.link_handle}`} target='_blank' rel="noreferrer" >
