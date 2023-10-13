@@ -3,8 +3,9 @@ import { Navbar } from 'widgets/Navbar'
 import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { AppDescription } from 'widgets/AppDescription'
+import { memo } from 'react'
 
-export const Layout = () => {
+export const Layout = memo(() => {
     const { theme } = useTheme()
 
     return (
@@ -22,4 +23,4 @@ export const Layout = () => {
             />
         </>
     )
-}
+})

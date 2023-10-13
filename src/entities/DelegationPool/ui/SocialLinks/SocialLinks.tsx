@@ -1,4 +1,4 @@
-import React, { type FC, useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import cls from './SocialLinks.module.scss'
 import classNames from 'classnames'
 import { type Social } from '../../model/types/delegationSchema'
@@ -56,7 +56,8 @@ const defaultLinks: Array<{ name: string, Icon: React.VFC<React.SVGProps<SVGSVGE
 
 ]
 
-export const SocialLinks: FC<SocialLinksProps> = ({ className, social, homepage }) => {
+export const SocialLinks = memo((props: SocialLinksProps) => {
+    const { className, social, homepage } = props
     const [socialLinks, setSocialLinks] = useState<[] | SocialLink[]>([])
 
     useEffect(() => {
@@ -88,4 +89,4 @@ export const SocialLinks: FC<SocialLinksProps> = ({ className, social, homepage 
             )}
         </div>
     )
-}
+})

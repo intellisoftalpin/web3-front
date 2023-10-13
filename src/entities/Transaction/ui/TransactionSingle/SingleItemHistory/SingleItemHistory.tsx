@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './SingleItemHistory.module.scss'
 import classNames from 'classnames'
 import { shortFormatText } from 'shared/lib/shortFormatText/shortFormatText'
@@ -14,11 +14,8 @@ interface SingleItemHistoryProps {
     decimals: number
 }
 
-export const SingleItemHistory: FC<SingleItemHistoryProps> = ({
-    className,
-    historyTransaction,
-    decimals
-}) => {
+export const SingleItemHistory = memo((props: SingleItemHistoryProps) => {
+    const { className, historyTransaction, decimals } = props
     const { address, assets, amount } = historyTransaction
 
     return (
@@ -49,4 +46,4 @@ export const SingleItemHistory: FC<SingleItemHistoryProps> = ({
         </>
 
     )
-}
+})

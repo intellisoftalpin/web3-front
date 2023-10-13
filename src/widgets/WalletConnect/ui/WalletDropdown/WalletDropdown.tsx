@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './WalletDropdown.module.scss'
 import classNames from 'classnames'
 import { Button } from 'shared/ui/Button'
@@ -18,7 +18,7 @@ interface WalletDropdownProps {
     openedDropdown: boolean
 }
 
-export const WalletDropdown: FC<WalletDropdownProps> = ({ className, openedDropdown }) => {
+export const WalletDropdown = memo(({ className, openedDropdown }: WalletDropdownProps) => {
     const { t } = useTranslation()
     const { walletName, icon, address, network, tokens } = useAppSelector(getWallet)
     const dispatch = useAppDispatch()
@@ -61,4 +61,4 @@ export const WalletDropdown: FC<WalletDropdownProps> = ({ className, openedDropd
             </div>
         </div>
     )
-}
+})

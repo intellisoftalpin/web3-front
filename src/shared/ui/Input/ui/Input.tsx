@@ -1,4 +1,4 @@
-import React, { type FC, type InputHTMLAttributes, useRef } from 'react'
+import React, { type InputHTMLAttributes, memo, useRef } from 'react'
 import cls from './Input.module.scss'
 import classNames from 'classnames'
 
@@ -11,7 +11,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     mode?: InputMode
 }
 
-export const Input: FC<InputProps> = (props) => {
+export const Input = memo((props: InputProps) => {
     const {
         className,
         variant = 'clear',
@@ -36,4 +36,4 @@ export const Input: FC<InputProps> = (props) => {
             className={classNames(cls.Input, {}, [className, cls[variant]])}
             {...otherProps}/>
     )
-}
+})

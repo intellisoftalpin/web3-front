@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './Navbar.module.scss'
 import classNames from 'classnames'
 import { createRoutes } from 'shared/config/routesConfig/routesConfig'
@@ -13,7 +13,7 @@ interface NavbarProps {
     className?: string
 }
 
-export const Navbar: FC<NavbarProps> = ({ className }) => {
+export const Navbar = memo(({ className }: NavbarProps) => {
     const { t } = useTranslation()
 
     return (
@@ -33,4 +33,4 @@ export const Navbar: FC<NavbarProps> = ({ className }) => {
             </div>
         </header>
     )
-}
+})

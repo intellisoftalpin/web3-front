@@ -1,4 +1,4 @@
-import { type FC, useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import cls from './LangSwitcher.module.scss'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
@@ -30,7 +30,7 @@ const languages: language[] = [
     }
 ]
 
-export const LangSwitcher: FC<LangSwitcherProps> = ({ className }) => {
+export const LangSwitcher = memo(({ className }: LangSwitcherProps) => {
     const { i18n } = useTranslation()
 
     const ref = useRef(null)
@@ -72,4 +72,4 @@ export const LangSwitcher: FC<LangSwitcherProps> = ({ className }) => {
             </div>
         </div>
     )
-}
+})

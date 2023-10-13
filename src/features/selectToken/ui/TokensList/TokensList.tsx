@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './TokensList.module.scss'
 import classNames from 'classnames'
 import { TokenItem } from '../TokenItem/TokenItem'
@@ -10,7 +10,9 @@ interface TokensListProps {
     tokens: TokenSchema[]
 }
 
-export const TokensList: FC<TokensListProps> = ({ className, onClose, tokens }) => {
+export const TokensList = memo((props: TokensListProps) => {
+    const { className, onClose, tokens } = props
+
     return (
         <div className={classNames(cls.TokensList, {}, [className])}>
             {tokens.map((item: TokenSchema) =>
@@ -18,4 +20,4 @@ export const TokensList: FC<TokensListProps> = ({ className, onClose, tokens }) 
             )}
         </div>
     )
-}
+})

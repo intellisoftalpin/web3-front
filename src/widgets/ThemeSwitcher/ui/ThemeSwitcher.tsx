@@ -1,4 +1,4 @@
-import React, { type FC, useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import cls from './ThemeSwitcher.module.scss'
 import classNames from 'classnames'
 import { useTheme } from 'app/providers/ThemeProvider'
@@ -7,7 +7,7 @@ interface ThemeSwitcherProps {
     className?: string
 }
 
-export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
+export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
     const { toggleTheme, theme } = useTheme()
 
     const [themeChecked, setThemeChecked] = useState(true)
@@ -32,4 +32,4 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
             </div>
         </div>
     )
-}
+})

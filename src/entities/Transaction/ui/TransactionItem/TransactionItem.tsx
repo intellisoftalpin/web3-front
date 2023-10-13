@@ -1,4 +1,4 @@
-import { type FC, useState } from 'react'
+import { memo, useState } from 'react'
 import cls from './TransactionItem.module.scss'
 import classNames from 'classnames'
 import { type Transaction } from 'entities/Transaction/model/types/transactionSchema'
@@ -23,10 +23,8 @@ interface TransactionItemProps {
     transaction: Transaction
 }
 
-export const TransactionItem: FC<TransactionItemProps> = ({
-    className,
-    transaction
-}) => {
+export const TransactionItem = memo((props: TransactionItemProps) => {
+    const { className, transaction } = props
     const [deleteTransaction] = useDeleteTransactionMutation()
 
     const {
@@ -130,4 +128,4 @@ export const TransactionItem: FC<TransactionItemProps> = ({
             </div>
         </div>
     )
-}
+})
