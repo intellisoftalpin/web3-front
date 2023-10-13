@@ -1,4 +1,4 @@
-import { type FC, useCallback, useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import cls from './Trade.module.scss'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
@@ -27,7 +27,7 @@ interface TradeProps {
     className?: string
 }
 
-export const Trade: FC<TradeProps> = ({ className }) => {
+export const Trade = memo(({ className }: TradeProps) => {
     const { t } = useTranslation()
     const dispatch = useAppDispatch()
     const { connected } = useAppSelector(getAuth)
@@ -195,4 +195,4 @@ export const Trade: FC<TradeProps> = ({ className }) => {
             <WalletConnectModal isOpen={openModal} onClose={setOpenModal}/>
         </div>
     )
-}
+})

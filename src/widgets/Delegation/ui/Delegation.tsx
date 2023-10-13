@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './Delegation.module.scss'
 import classNames from 'classnames'
 import { DelegationPool, useGetPoolsQuery } from 'entities/DelegationPool'
@@ -7,7 +7,7 @@ interface DelegationProps {
     className?: string
 }
 
-export const Delegation: FC<DelegationProps> = ({ className }) => {
+export const Delegation = memo(({ className }: DelegationProps) => {
     const { data: dataPools } = useGetPoolsQuery('')
 
     return (
@@ -17,4 +17,4 @@ export const Delegation: FC<DelegationProps> = ({ className }) => {
             )}
         </div>
     )
-}
+})

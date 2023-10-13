@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import classNames from 'classnames'
 import cls from './WalletConnect.module.scss'
 import { Modal } from 'shared/ui/Modal'
@@ -12,13 +12,9 @@ interface WalletConnectModalProps {
     onClose: (active: boolean) => void
 }
 
-export const WalletConnectModal: FC<WalletConnectModalProps> = (props) => {
+export const WalletConnectModal = memo((props: WalletConnectModalProps) => {
     const { t } = useTranslation()
-    const {
-        className,
-        isOpen,
-        onClose
-    } = props
+    const { className, isOpen, onClose } = props
 
     return (
         <Modal opened={isOpen} onClose={onClose} className={classNames(cls.WalletConnectModal, [className])}>
@@ -27,4 +23,4 @@ export const WalletConnectModal: FC<WalletConnectModalProps> = (props) => {
             <OtherWallets/>
         </Modal>
     )
-}
+})

@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './DelegationPool.module.scss'
 import classNames from 'classnames'
 import { Button } from 'shared/ui/Button'
@@ -25,7 +25,7 @@ interface DelegationPoolProps {
     poolId: string
 }
 
-export const DelegationPool: FC<DelegationPoolProps> = ({ className, poolId }) => {
+export const DelegationPool = memo(({ className, poolId }: DelegationPoolProps) => {
     const { connected } = useAppSelector(getAuth)
     const { authHash } = useAppSelector(getWallet)
     const { data: pool } = useGetPoolByIdQuery(poolId)
@@ -117,4 +117,4 @@ export const DelegationPool: FC<DelegationPoolProps> = ({ className, poolId }) =
             }
         </>
     )
-}
+})

@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './SelectTokenModal.module.scss'
 import classNames from 'classnames'
 import { Modal } from 'shared/ui/Modal'
@@ -13,14 +13,9 @@ interface SelectTokenModalProps {
     tokens: TokenSchema[]
 }
 
-export const SelectTokenModal: FC<SelectTokenModalProps> = (props) => {
+export const SelectTokenModal = memo((props: SelectTokenModalProps) => {
     const { t } = useTranslation()
-    const {
-        className,
-        opened,
-        onClose,
-        tokens
-    } = props
+    const { className, opened, onClose, tokens } = props
 
     return (
         <Modal opened={opened} onClose={onClose} className={classNames(cls.SelectTokenModal, [className])}>
@@ -28,4 +23,4 @@ export const SelectTokenModal: FC<SelectTokenModalProps> = (props) => {
             <TokensList onClose={onClose} tokens={tokens}/>
         </Modal>
     )
-}
+})

@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './TransactionSingle.module.scss'
 import classNames from 'classnames'
 import { type Transaction } from 'entities/Transaction/model/types/transactionSchema'
@@ -10,10 +10,8 @@ interface TransactionSingleProps {
     transaction: Transaction
 }
 
-export const TransactionSingle: FC<TransactionSingleProps> = ({
-    className,
-    transaction
-}) => {
+export const TransactionSingle = memo((props: TransactionSingleProps) => {
+    const { className, transaction } = props
     const { t } = useTranslation()
     const { decodedTx, decimals } = transaction
     const transactionTxInputs = decodedTx.inputs?.map(item => <SingleItemHistory historyTransaction={item} key={item.address} decimals={decimals}/>)
@@ -35,4 +33,4 @@ export const TransactionSingle: FC<TransactionSingleProps> = ({
             </div>
         </div>
     )
-}
+})

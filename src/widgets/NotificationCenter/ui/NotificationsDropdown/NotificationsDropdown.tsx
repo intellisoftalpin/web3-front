@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './NotificationsDropdown.module.scss'
 import classNames from 'classnames'
 import { type NotificationCenterItem } from 'react-toastify/addons/use-notification-center'
@@ -11,7 +11,7 @@ interface NotificationsDropdownProps {
     notifications: NotificationCenterItem[]
 }
 
-export const NotificationsDropdown: FC<NotificationsDropdownProps> = (props) => {
+export const NotificationsDropdown = memo((props: NotificationsDropdownProps) => {
     const { className, isDropdown, notifications } = props
     const { t } = useTranslation()
 
@@ -32,4 +32,4 @@ export const NotificationsDropdown: FC<NotificationsDropdownProps> = (props) => 
             </div>
         </div>
     )
-}
+})

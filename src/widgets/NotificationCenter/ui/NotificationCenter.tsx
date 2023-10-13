@@ -1,4 +1,4 @@
-import { type FC, useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import cls from './NotificationCenter.module.scss'
 import classNames from 'classnames'
 import Bell from 'shared/assets/icon/bell.svg'
@@ -10,7 +10,7 @@ interface NotificationCenterProps {
     className?: string
 }
 
-export const NotificationCenter: FC<NotificationCenterProps> = ({ className }) => {
+export const NotificationCenter = memo(({ className }: NotificationCenterProps) => {
     const { notifications, unreadCount, markAllAsRead } = useNotificationCenter()
     const [isDropdown, setDropdown] = useState(false)
     const ref = useRef(null)
@@ -41,4 +41,4 @@ export const NotificationCenter: FC<NotificationCenterProps> = ({ className }) =
             <NotificationsDropdown isDropdown={isDropdown} notifications={notifications}/>
         </div>
     )
-}
+})

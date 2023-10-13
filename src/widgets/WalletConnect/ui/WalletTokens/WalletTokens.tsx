@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './WalletTokens.module.scss'
 import classNames from 'classnames'
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
@@ -13,7 +13,7 @@ interface WalletTokensProps {
     className?: string
 }
 
-export const WalletTokens: FC<WalletTokensProps> = ({ className }) => {
+export const WalletTokens = memo(({ className }: WalletTokensProps) => {
     const { t } = useTranslation()
     const { tokens } = useAppSelector(getWallet)
 
@@ -44,4 +44,4 @@ export const WalletTokens: FC<WalletTokensProps> = ({ className }) => {
             </div>
         </div>
     )
-}
+})

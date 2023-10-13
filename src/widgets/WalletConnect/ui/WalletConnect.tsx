@@ -1,4 +1,4 @@
-import { type FC, useState } from 'react'
+import { memo, useState } from 'react'
 import cls from './WalletConnect.module.scss'
 import classNames from 'classnames'
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
@@ -12,7 +12,7 @@ interface WalletConnectProps {
     className?: string
 }
 
-export const WalletConnect: FC<WalletConnectProps> = ({ className }) => {
+export const WalletConnect = memo(({ className }: WalletConnectProps) => {
     const { t } = useTranslation()
     const { connected } = useAppSelector(getAuth)
 
@@ -33,4 +33,4 @@ export const WalletConnect: FC<WalletConnectProps> = ({ className }) => {
             }
         </div>
     )
-}
+})
