@@ -2,7 +2,7 @@ import { type WalletSchema } from 'entities/Wallet/model/types/walletSchema'
 import { LOCAL_STORAGE_SESSION_AUTH_KEY, LOCAL_STORAGE_WALLET_KEY } from 'shared/consts/localStorageAuthKey'
 import { useLoginMutation } from 'features/connectWithWallet/api/loginApi'
 
-const wallet: WalletSchema = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WALLET_KEY))
+const wallet: WalletSchema = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WALLET_KEY) as string)
 
 export const useReAuth = () => {
     const [login] = useLoginMutation()

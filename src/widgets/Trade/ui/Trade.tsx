@@ -77,9 +77,12 @@ export const Trade: FC<TradeProps> = ({ className }) => {
                     transferAmount: String(convertToLovelaces(+sumTransferAmount())),
                     assetAmount: String(assetQuantity)
                 }
-                await saveTransaction({ type: 'buy', data }).then(() => {
-                    setBusyTransaction(true)
-                    notify('Transaction created', 'success')
+                await saveTransaction({ type: 'buy', data }).unwrap().then((data) => {
+                    console.log(data)
+                    if (data.transactionId) {
+                        setBusyTransaction(true)
+                        notify('Transaction created', 'success')
+                    }
                 })
             }
         } catch (e) {

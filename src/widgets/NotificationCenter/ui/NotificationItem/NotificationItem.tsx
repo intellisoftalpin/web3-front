@@ -17,7 +17,7 @@ export const NotificationItem: FC<NotificationItemProps> = ({ className, notific
     return (
         <div className={classNames(cls.NotificationItem, {}, [className])}>
             <div className={cls.iconBlock}>
-                <NotificationIcon theme={notification.theme} type={notification.type} className={cls.icon}/>
+                <NotificationIcon theme={notification.theme || 'dark'} type={notification.type || 'default'} className={cls.icon}/>
             </div>
             <div className={cls.text}>
                 <p>{String(notification.content)}</p>

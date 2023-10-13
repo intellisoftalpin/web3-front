@@ -8,7 +8,7 @@ import { AuthProvider } from 'app/providers/AuthProvider'
 import { WalletProvider } from 'app/providers/WalletProvider'
 
 const container = document.getElementById('app')
-const root = createRoot(container)
+const root = createRoot(container as Element)
 root.render(
     <StoreProvider>
         <AuthProvider>

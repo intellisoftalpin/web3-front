@@ -12,7 +12,7 @@ interface AuthProviderProps {
     children: ReactNode
 }
 
-const wallet: LocalStorageWallet = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WALLET_KEY))
+const wallet: LocalStorageWallet = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WALLET_KEY) as string)
 const sessionKey = localStorage.getItem(LOCAL_STORAGE_SESSION_AUTH_KEY)
 
 export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
@@ -35,7 +35,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     }, [dispatch])
 
     useEffect(() => {
-        const wallet: WalletSchema = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WALLET_KEY))
+        const wallet: WalletSchema = JSON.parse(localStorage.getItem(LOCAL_STORAGE_WALLET_KEY) as string)
         if (!connected && wallet) {
             getSessionKey()
                 .then(key => {

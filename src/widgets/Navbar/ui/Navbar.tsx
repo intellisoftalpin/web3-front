@@ -20,7 +20,7 @@ export const Navbar: FC<NavbarProps> = ({ className }) => {
         <header className={classNames(cls.Navbar, {}, [className])}>
             <nav className={cls.appLinks}>
                 {createRoutes().map(item =>
-                    <AppLink to={item.path} key={item.id}>
+                    <AppLink to={item.path || ''} key={item.id}>
                         {t(item.id)}
                     </AppLink>
                 )}

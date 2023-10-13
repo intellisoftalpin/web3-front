@@ -2,6 +2,7 @@ import { store } from 'app/providers/StoreProvider/config/store'
 import { BrowserWallet, Transaction } from '@meshsdk/core'
 import { notify } from 'shared/lib/notify/notify'
 import { convertToAda } from 'shared/lib/convertToAda/convertToAda'
+import { walletErrorToObject } from 'shared/lib/wallet/walletErrorToObject/walletErrorToObject'
 
 export const makeCborBuyTokens = async (transferAmountTokens: string, transferAmountFee: string, fee: number) => {
     const { walletName, address: ownerAddress, balance } = store.getState().wallet
@@ -18,6 +19,6 @@ export const makeCborBuyTokens = async (transferAmountTokens: string, transferAm
     tx.setMetadata(1002, policyId)
     tx.setMetadata(1003, assetId)
     tx.setMetadata(1004, assetQuantity)
-    const unsignedTx = await tx.build().catch(e => { notify('Request rejected', 'error') })
-    if (unsignedTx) return await wallet.signTx(unsignedTx).catch(e => { notify('Request rejected', 'error') })
+    const unsignedTx = await tx.build().catch(e => { notify(walletErrorToObject(e.message).info, 'error') })
+    if (unsignedTx) return await wallet.signTx(unsignedTx).catch(e => { notify(walletErrorToObject(e.message).info, 'error') })
 }

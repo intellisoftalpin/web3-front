@@ -5,6 +5,7 @@ import Telegram from './telegram.svg'
 import Twitch from './twitch.svg'
 import Twitter from './twitter.svg'
 import Youtube from './youtube.svg'
+import Web from './web.svg'
 
 export {
     Discord,
@@ -13,5 +14,6 @@ export {
     Telegram,
     Twitch,
     Twitter,
-    Youtube
+    Youtube,
+    Web
 }

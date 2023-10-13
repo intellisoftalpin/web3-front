@@ -79,6 +79,12 @@
     }
 }
 
+.tooltip {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 .delegated {
     display: flex;
     font-size: var(--font-size-m);
