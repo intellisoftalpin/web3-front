@@ -4,12 +4,14 @@ import { baseApi } from 'shared/api/baseApi'
 import { walletReducer } from 'entities/Wallet'
 import { tokenReducer } from 'entities/Token'
 import { authReducer } from 'entities/Auth'
+import { connectWalletReducer } from 'features/connectWithWallet'
 
 export const store = configureStore({
     reducer: {
         wallet: walletReducer,
         token: tokenReducer,
         auth: authReducer,
+        walletModal: connectWalletReducer,
         [baseApi.reducerPath]: baseApi.reducer
     },
     middleware: (getDefaultMiddleware) =>

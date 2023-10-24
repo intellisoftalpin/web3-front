@@ -1,7 +1,7 @@
 import React, { type FC, useMemo, useState } from 'react'
 import { LOCAL_STORAGE_KEY_THEME, Theme, ThemeContext } from '../lib/ThemeContext'
 
-const defaultTheme = localStorage.getItem(LOCAL_STORAGE_KEY_THEME) as Theme || Theme.LIGHT
+const defaultTheme = localStorage.getItem(LOCAL_STORAGE_KEY_THEME) as Theme || Theme.DARK
 
 export interface ThemeProviderProps {
     children: React.ReactElement

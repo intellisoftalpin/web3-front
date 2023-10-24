@@ -19,6 +19,8 @@ import { getWallet } from 'entities/Wallet/model/selectors/getWallet/getWallet'
 import { SocialLinks } from './SocialLinks/SocialLinks'
 import { Tooltip } from 'shared/ui/Tooltip'
 import { walletErrorToObject } from 'shared/lib/wallet/walletErrorToObject/walletErrorToObject'
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { connectWalletActions } from 'features/connectWithWallet/model/slice/connectWalletSlice'
 
 interface DelegationPoolProps {
     className?: string
@@ -26,6 +28,7 @@ interface DelegationPoolProps {
 }
 
 export const DelegationPool = memo(({ className, poolId }: DelegationPoolProps) => {
+    const dispatch = useAppDispatch()
     const { connected } = useAppSelector(getAuth)
     const { authHash } = useAppSelector(getWallet)
     const { data: pool } = useGetPoolByIdQuery(poolId)
@@ -54,6 +57,10 @@ export const DelegationPool = memo(({ className, poolId }: DelegationPoolProps) 
         } catch (e: any) {
             notify(e.message, 'error')
         }
+    }
+
+    const onOpenConnectWallet = () => {
+        dispatch(connectWalletActions.openWalletModal({ isOpen: true }))
     }
 
     return (
@@ -104,6 +111,7 @@ export const DelegationPool = memo(({ className, poolId }: DelegationPoolProps) 
                         {/*    <span>{pool.rose12}</span> */}
                         {/* </div> */}
                     </div>
+                    {!connected && <Button className={cls.delegate} variant='outline' onClick={onOpenConnectWallet}>Connect to a wallet</Button>}
                     {(connected && delegatedPool) &&
                         <div className={cls.delegateButton}>
                             {delegatedPool.view === pool.view
