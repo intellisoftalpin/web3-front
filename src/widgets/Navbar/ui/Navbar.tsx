@@ -4,7 +4,6 @@ import classNames from 'classnames'
 import { createRoutes } from 'shared/config/routesConfig/routesConfig'
 import { AppLink } from 'shared/ui/AppLink'
 import { useTranslation } from 'react-i18next'
-import { LangSwitcher } from 'widgets/LangSwitcher'
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import { WalletConnect } from 'widgets/WalletConnect'
 import { NotificationCenter } from 'widgets/NotificationCenter'
@@ -28,7 +27,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             <div className={cls.appFeatures}>
                 <WalletConnect/>
                 <ThemeSwitcher/>
-                <LangSwitcher/>
+                {/* <LangSwitcher/> */}
                 <NotificationCenter/>
             </div>
         </header>
