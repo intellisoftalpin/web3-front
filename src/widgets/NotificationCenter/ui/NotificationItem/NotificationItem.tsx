@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './NotificationItem.module.scss'
 import classNames from 'classnames'
 import { type NotificationCenterItem } from 'react-toastify/addons/use-notification-center'
@@ -11,13 +11,14 @@ interface NotificationItemProps {
     notification: NotificationCenterItem
 }
 
-export const NotificationItem: FC<NotificationItemProps> = ({ className, notification }) => {
+export const NotificationItem = memo((props: NotificationItemProps) => {
+    const { className, notification } = props
     const { i18n } = useTranslation()
 
     return (
         <div className={classNames(cls.NotificationItem, {}, [className])}>
             <div className={cls.iconBlock}>
-                <NotificationIcon theme={notification.theme} type={notification.type} className={cls.icon}/>
+                <NotificationIcon theme={notification.theme || 'dark'} type={notification.type || 'default'} className={cls.icon}/>
             </div>
             <div className={cls.text}>
                 <p>{String(notification.content)}</p>
@@ -26,4 +27,4 @@ export const NotificationItem: FC<NotificationItemProps> = ({ className, notific
             <div className={classNames(cls.unread, { [cls.read]: notification.read })}/>
         </div>
     )
-}
+})

@@ -1,0 +1,37 @@
+.AppDescription {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.blockDescription {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    background-color: var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+}
+
+.logo {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    width: 24px;
+    height: 24px;
+    fill: var(--inverted-bg-color);
+}
+
+.description {
+    text-align: center;
+    max-width: 660px;
+    line-height: 1.2;
+    font-size: var(--font-size-s);
+}
+
+.link {
+    margin-left: 5px;
+    color: var(--accent-color)
+}

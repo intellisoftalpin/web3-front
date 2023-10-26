@@ -5,7 +5,8 @@ import {
     useDeleteTransactionMutation,
     useUpdateTransactionMutation,
     useGetSingleTransactionQuery,
-    useGetTransactionsQuery
+    useGetTransactionsQuery,
+    useGetTransactionActiveQuery
 } from './api/transactionApi'
 
 export {
@@ -15,5 +16,6 @@ export {
     useDeleteTransactionMutation,
     useUpdateTransactionMutation,
     useGetSingleTransactionQuery,
-    useGetTransactionsQuery
+    useGetTransactionsQuery,
+    useGetTransactionActiveQuery
 }

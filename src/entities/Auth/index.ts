@@ -1,4 +1,4 @@
-import { authReducer } from 'entities/Auth/model/slice/authSlice'
+import { authReducer } from './model/slice/authSlice'
 
 export {
     authReducer

@@ -1,4 +1,4 @@
-import { type FC, type ReactNode } from 'react'
+import { memo, type ReactNode } from 'react'
 import cls from './AppLink.module.scss'
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
@@ -9,12 +9,8 @@ interface AppLinkProps {
     children: ReactNode
 }
 
-export const AppLink: FC<AppLinkProps> = (props) => {
-    const {
-        className,
-        to,
-        children
-    } = props
+export const AppLink = memo((props: AppLinkProps) => {
+    const { className, to, children } = props
 
     return (
         <NavLink
@@ -24,4 +20,4 @@ export const AppLink: FC<AppLinkProps> = (props) => {
             {children}
         </NavLink>
     )
-}
+})

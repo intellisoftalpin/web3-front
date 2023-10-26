@@ -1,4 +1,4 @@
-import { type FC, useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import cls from './OtherWallets.module.scss'
 import classNames from 'classnames'
 import Arrow from 'shared/assets/icon/arrow.svg'
@@ -36,7 +36,7 @@ const walletList: wallet[] = [
     }
 ]
 
-export const OtherWallets: FC<OtherWalletsProps> = ({ className }) => {
+export const OtherWallets = memo(({ className }: OtherWalletsProps) => {
     const { t } = useTranslation()
 
     const [openWallets, setOpenWallets] = useState(false)
@@ -76,4 +76,4 @@ export const OtherWallets: FC<OtherWalletsProps> = ({ className }) => {
             }
         </div>
     )
-}
+})

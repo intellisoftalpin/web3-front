@@ -9,9 +9,9 @@ export const App = () => {
     const { theme } = useTheme()
 
     useEffect(() => {
-        document.title = window?._env_?.TITLE || process.env.TITLE
+        document.title = window?._env_?.TITLE || process.env.TITLE || 'Web3 app'
         document.querySelector('meta[name="description"]')
-            ?.setAttribute('content', window?._env_?.DESCRIPTION || process.env.DESCRIPTION)
+            ?.setAttribute('content', window?._env_?.DESCRIPTION || process.env.DESCRIPTION || 'Web3 app')
     }, [])
 
     return (

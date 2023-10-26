@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './TokenItem.module.scss'
 import classNames from 'classnames'
 import { Button } from 'shared/ui/Button'
@@ -12,12 +12,8 @@ interface TokenItemProps {
     onClose: (opened: boolean) => void
 }
 
-export const TokenItem: FC<TokenItemProps> = (props) => {
-    const {
-        className,
-        onClose,
-        token
-    } = props
+export const TokenItem = memo((props: TokenItemProps) => {
+    const { className, onClose, token } = props
 
     const dispatch = useAppDispatch()
 
@@ -38,4 +34,4 @@ export const TokenItem: FC<TokenItemProps> = (props) => {
             </div>
         </Button>
     )
-}
+})

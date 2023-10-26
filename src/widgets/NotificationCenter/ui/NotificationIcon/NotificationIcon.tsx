@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './NotificationIcon.module.scss'
 import classNames from 'classnames'
 import { Icons, type Theme, type TypeOptions } from 'react-toastify'
@@ -9,7 +9,9 @@ interface NotificationIconProps {
     theme: Theme
 }
 
-export const NotificationIcon: FC<NotificationIconProps> = ({ className, type, theme }) => {
+export const NotificationIcon = memo((props: NotificationIconProps) => {
+    const { className, type, theme } = props
+
     return (
         <>
             {type === 'info' && <Icons.info type={type} theme={theme} className={classNames(cls.NotificationIcon, [className])}/>}
@@ -18,4 +20,4 @@ export const NotificationIcon: FC<NotificationIconProps> = ({ className, type, t
             {type === 'success' && <Icons.success type={type} theme={theme} className={classNames(cls.NotificationIcon, [className])}/>}
         </>
     )
-}
+})

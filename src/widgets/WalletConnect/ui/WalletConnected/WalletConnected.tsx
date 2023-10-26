@@ -1,4 +1,4 @@
-import { type FC, useEffect, useRef, useState } from 'react'
+import { memo, useEffect, useRef, useState } from 'react'
 import cls from './WalletConnected.module.scss'
 import classNames from 'classnames'
 import Arrow from 'shared/assets/icon/arrowSelect.svg'
@@ -13,7 +13,7 @@ interface WalletConnectedProps {
     className?: string
 }
 
-export const WalletConnected: FC<WalletConnectedProps> = ({ className }) => {
+export const WalletConnected = memo(({ className }: WalletConnectedProps) => {
     const { t } = useTranslation()
     const { icon, balance, address } = useAppSelector(getWallet)
 
@@ -47,4 +47,4 @@ export const WalletConnected: FC<WalletConnectedProps> = ({ className }) => {
             <WalletDropdown openedDropdown={openedDropdown}/>
         </div>
     )
-}
+})

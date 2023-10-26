@@ -1,4 +1,4 @@
-import { type FC, useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import cls from './TransactionList.module.scss'
 import classNames from 'classnames'
 import { useGetTransactionsQuery } from 'entities/Transaction'
@@ -13,7 +13,7 @@ interface TransactionListProps {
     className?: string
 }
 
-export const TransactionList: FC<TransactionListProps> = ({ className }) => {
+export const TransactionList = memo(({ className }: TransactionListProps) => {
     const { t } = useTranslation()
     const [transactions, setTransactions] = useState<Transaction[] | []>([])
 
@@ -53,4 +53,4 @@ export const TransactionList: FC<TransactionListProps> = ({ className }) => {
             </div>
         </div>
     )
-}
+})

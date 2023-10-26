@@ -31,6 +31,7 @@ module.exports = {
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'error',
         'no-param-reassign': 'off',
-        '@typescript-eslint/consistent-type-assertions': 'off'
+        '@typescript-eslint/consistent-type-assertions': 'off',
+        'react/display-name': 'off'
     }
 }

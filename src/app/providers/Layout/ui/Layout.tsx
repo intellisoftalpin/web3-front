@@ -2,9 +2,11 @@ import { useTheme } from 'app/providers/ThemeProvider'
 import { Navbar } from 'widgets/Navbar'
 import { Outlet } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
-import { AppDescription } from 'widgets/AppDescription/AppDescription'
+import { AppDescription } from 'widgets/AppDescription'
+import { memo } from 'react'
+import { WalletConnectModal } from 'features/connectWithWallet'
 
-export const Layout = () => {
+export const Layout = memo(() => {
     const { theme } = useTheme()
 
     return (
@@ -12,6 +14,7 @@ export const Layout = () => {
             <Navbar/>
             <AppDescription/>
             <Outlet/>
+            <WalletConnectModal/>
             <ToastContainer
                 theme={theme}
                 bodyClassName='body-toast'
@@ -22,4 +25,4 @@ export const Layout = () => {
             />
         </>
     )
-}
+})

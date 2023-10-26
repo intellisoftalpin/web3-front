@@ -8,6 +8,7 @@
       "dom"
     ],
     "target": "es5",
+    "strict": true,
     "jsx": "react-jsx",
     "allowJs": true,
     "moduleResolution": "node",
@@ -18,7 +19,7 @@
       ]
     },
     "resolveJsonModule": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true
   },
   "ts-node": {
     "compilerOptions": {

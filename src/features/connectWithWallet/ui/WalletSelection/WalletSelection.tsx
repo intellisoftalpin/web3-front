@@ -1,4 +1,4 @@
-import { type FC, useEffect } from 'react'
+import { memo, useEffect } from 'react'
 import cls from './WalletSelection.module.scss'
 import classNames from 'classnames'
 import { BrowserWallet } from '@meshsdk/core'
@@ -22,10 +22,7 @@ interface WalletChooseProps {
     onClose: (active: boolean) => void
 }
 
-export const WalletSelection: FC<WalletChooseProps> = ({
-    className,
-    onClose
-}) => {
+export const WalletSelection = memo(({ className, onClose }: WalletChooseProps) => {
     const { t } = useTranslation()
     const [login, { data: loginResponse }] = useLoginMutation()
     const availableWallets: WalletItem[] = BrowserWallet.getInstalledWallets()
@@ -86,4 +83,4 @@ export const WalletSelection: FC<WalletChooseProps> = ({
             )}
         </div>
     )
-}
+})

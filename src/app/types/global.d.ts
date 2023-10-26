@@ -25,5 +25,6 @@ declare interface Window {
         TITLE: string
         LINK: string
         LINK_TEXT: string
+        ACTIONS: string
     }
 }

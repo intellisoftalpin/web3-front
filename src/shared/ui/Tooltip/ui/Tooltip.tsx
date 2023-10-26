@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { memo } from 'react'
 import cls from './Tooltip.module.scss'
 import classNames from 'classnames'
 import TooltipIcon from 'shared/assets/icon/tooltip.svg'
@@ -10,9 +10,8 @@ interface TooltipProps {
     text: string
 }
 
-export const Tooltip: FC<TooltipProps> = (props) => {
-    const { id, text, className } =
-        props
+export const Tooltip = memo((props: TooltipProps) => {
+    const { id, text, className } = props
 
     return (
         <div className={classNames(cls.Tooltip, {}, [className])}>
@@ -22,4 +21,4 @@ export const Tooltip: FC<TooltipProps> = (props) => {
             </ReactTooltip>
         </div>
     )
-}
+})
