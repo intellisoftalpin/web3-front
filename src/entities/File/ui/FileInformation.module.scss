@@ -1,0 +1,14 @@
+.FileInformation {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    padding: 10px;
+    border-radius: var(--border-radius);
+}
+
+.informationItem {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
