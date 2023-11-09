@@ -27,11 +27,11 @@ export const FileInformation: FC<FileInformationProps> = ({ className }) => {
             </div>
             <div className={cls.informationItem}>
                 <span>Size</span>
-                <span>{(size / 1024).toFixed(0)}kb</span>
+                <span>{size && `${(size / 1024).toFixed(0)}kb`}</span>
             </div>
             <div className={cls.informationItem}>
                 <span>Last Modified</span>
-                <span>{new Date(lastModified).toLocaleString()}</span>
+                <span>{lastModified && new Date(lastModified).toLocaleString()}</span>
             </div>
         </div>
     )

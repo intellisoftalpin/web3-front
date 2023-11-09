@@ -3,18 +3,21 @@ import { NotFoundPage } from 'pages/NotFoundPage'
 import { TradePage } from 'pages/TradePage'
 import { Layout } from 'app/providers/Layout'
 import { DelegatePage } from 'pages/DalegatePage'
-import { UploadPage } from 'pages/UploadPage'
+import { SignPage } from 'pages/SignPage'
+import { DocPage } from 'pages/DocPage'
 
 export enum AppRoutes {
     TRADE = 'trade',
     DELEGATE = 'delegate',
-    UPLOAD = 'upload'
+    SIGN = 'sign',
+    DOC = 'doc'
 }
 
 export const RoutesPath: Record<AppRoutes, string> = {
     [AppRoutes.TRADE]: 'buy',
     [AppRoutes.DELEGATE]: 'delegate',
-    [AppRoutes.UPLOAD]: 'upload'
+    [AppRoutes.SIGN]: 'sign',
+    [AppRoutes.DOC]: 'doc'
 }
 
 const defaultRoutes = [
@@ -31,9 +34,15 @@ const defaultRoutes = [
         errorElement: <NotFoundPage/>
     },
     {
-        id: 'upload',
-        path: RoutesPath.upload,
-        element: <UploadPage/>,
+        id: 'sign',
+        path: RoutesPath.sign,
+        element: <SignPage/>,
+        errorElement: <NotFoundPage/>
+    },
+    {
+        id: 'doc',
+        path: RoutesPath.doc,
+        element: <DocPage/>,
         errorElement: <NotFoundPage/>
     }
 ]
