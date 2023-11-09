@@ -26,21 +26,7 @@ export const tokenSlice = createSlice({
     initialState,
     reducers: {
         setChosenToken: (state, action: PayloadAction<TokenSchema>) => {
-            state.assetQuantity = action.payload.assetQuantity
-            state.assetUnit = action.payload.assetUnit
-            state.fee = action.payload.fee
-            state.deposit = action.payload.deposit
-            state.processingFee = action.payload.processingFee
-            state.policyId = action.payload.policyId
-            state.logo = action.payload.logo
-            state.assetId = action.payload.assetId
-            state.ticker = action.payload.ticker
-            state.assetName = action.payload.assetName
-            state.tokenPrice.price = action.payload.tokenPrice.price
-            state.address = action.payload.address
-            state.totalQuantity = action.payload.totalQuantity
-            state.rewardAddress = action.payload.rewardAddress
-            state.decimals = action.payload.decimals
+            return action.payload
         }
     }
 })

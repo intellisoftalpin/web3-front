@@ -3,15 +3,21 @@ import { NotFoundPage } from 'pages/NotFoundPage'
 import { TradePage } from 'pages/TradePage'
 import { Layout } from 'app/providers/Layout'
 import { DelegatePage } from 'pages/DalegatePage'
+import { SignPage } from 'pages/SignPage'
+import { DocPage } from 'pages/DocPage'
 
 export enum AppRoutes {
     TRADE = 'trade',
-    DELEGATE = 'delegate'
+    DELEGATE = 'delegate',
+    SIGN = 'sign',
+    DOC = 'doc'
 }
 
 export const RoutesPath: Record<AppRoutes, string> = {
     [AppRoutes.TRADE]: 'buy',
-    [AppRoutes.DELEGATE]: 'delegate'
+    [AppRoutes.DELEGATE]: 'delegate',
+    [AppRoutes.SIGN]: 'sign',
+    [AppRoutes.DOC]: 'doc'
 }
 
 const defaultRoutes = [
@@ -25,6 +31,18 @@ const defaultRoutes = [
         id: 'delegate',
         path: RoutesPath.delegate,
         element: <DelegatePage/>,
+        errorElement: <NotFoundPage/>
+    },
+    {
+        id: 'sign',
+        path: RoutesPath.sign,
+        element: <SignPage/>,
+        errorElement: <NotFoundPage/>
+    },
+    {
+        id: 'doc',
+        path: RoutesPath.doc,
+        element: <DocPage/>,
         errorElement: <NotFoundPage/>
     }
 ]

@@ -60,5 +60,7 @@
   "Tokens": "Tokens",
   "Disconnect wallet": "Disconnect wallet",
   "delegate": "Delegate",
+  "sign": "Sign",
+  "doc": "Doc",
   "Transaction pending": "Transaction pending..."
 }

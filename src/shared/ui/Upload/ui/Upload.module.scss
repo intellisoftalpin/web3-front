@@ -1,0 +1,18 @@
+.Upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 2px dashed var(--inverted-bg-color);
+    border-radius: var(--border-radius);
+    background-color: var(--bg-color);
+
+    &:hover {
+        cursor: pointer;
+        opacity: .8;
+    }
+}
+
+.text {
+    color: var(--inverted-bg-color);
+}
