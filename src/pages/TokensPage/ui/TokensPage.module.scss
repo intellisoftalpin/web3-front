@@ -1,0 +1,41 @@
+.TokensPage {
+    display: flex;
+    gap: 50px;
+    margin: 20px;
+    padding-top: 20px;
+}
+
+.tabList {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-l);
+    color: var(--inverted-bg-color);
+    background-color: var(--bg-color);
+    width: 100%;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color .5s;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+.active {
+    background-color: var(--inverted-bg-color);
+    color: var(--bg-color);
+}
