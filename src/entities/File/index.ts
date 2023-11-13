@@ -1,4 +1,7 @@
 export { FileInformation } from './ui/FileInformation'
 export { fileReducer, fileActions } from './model/slice/fileSlice'
-export { signFile, checkFileHash } from './lib/signFile'
+export { signFile } from './lib/signFile'
 export { hashFile } from './lib/hashFile'
+export { fileApi } from './api/fileApi'
+export { useCheckFileMetadataHash } from './lib/hooks/useCheckFileMetadataHash'
+export { useSignFile } from './lib/hooks/useSignFile'

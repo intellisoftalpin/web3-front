@@ -1,1 +1,1 @@
-export { SignPageAsync as SignPage } from './ui/SignPageAsync'
+export { SignPageAsync as SignPage } from './ui/SignPage.async'

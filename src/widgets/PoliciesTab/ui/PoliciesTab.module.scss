@@ -1,0 +1,19 @@
+.PoliciesTab {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+
+.createPolicyForm {
+    background-color: var(--secondary-bg-color);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: var(--border-radius);
+}
+
+.header {
+    text-align: center;
+}

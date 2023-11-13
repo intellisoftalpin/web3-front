@@ -10,10 +10,11 @@ interface FileUploadProps {
     className?: string
     actionName: string
     onPerformAction: () => void
+    loading?: boolean
 }
 
 export const FileUpload = memo((props: FileUploadProps) => {
-    const { onPerformAction, actionName, className } = props
+    const { onPerformAction, actionName, className, loading } = props
     const dispatch = useAppDispatch()
     const [file, setFile] = useState<File | null>(null)
 
@@ -34,7 +35,7 @@ export const FileUpload = memo((props: FileUploadProps) => {
             <h1 className={cls.header}>File</h1>
             <Upload setFile={setFile}/>
             <FileInformation/>
-            <Button onClick={onPerformAction} disabled={!file} variant='outline'>{actionName}</Button>
+            <Button onClick={onPerformAction} disabled={!file || loading} variant='outline'>{loading ? 'Pending...' : actionName}</Button>
         </div>
     )
 })

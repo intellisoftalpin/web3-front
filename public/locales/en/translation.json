@@ -62,5 +62,6 @@
   "delegate": "Delegate",
   "sign": "Sign",
   "doc": "Doc",
+  "tokens": "Tokens",
   "Transaction pending": "Transaction pending..."
 }

@@ -2,20 +2,22 @@ import React, { type InputHTMLAttributes, memo, useRef } from 'react'
 import cls from './Input.module.scss'
 import classNames from 'classnames'
 
-export type InputVariant = 'clear'
+export type InputVariant = 'filled' | 'clear'
 export type InputMode = 'decimal' | 'text'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     className?: string
     variant?: InputVariant
     mode?: InputMode
+    labelText?: string
 }
 
 export const Input = memo((props: InputProps) => {
     const {
         className,
-        variant = 'clear',
+        variant = 'filled',
         mode = 'text',
+        labelText,
         ...otherProps
     } = props
 
@@ -30,10 +32,15 @@ export const Input = memo((props: InputProps) => {
     }
 
     return (
-        <input
-            ref={inputRef}
-            onKeyPress={setOnlyNumbers}
-            className={classNames(cls.Input, {}, [className, cls[variant]])}
-            {...otherProps}/>
+        <div className={cls.inputBlock}>
+            {labelText &&
+                <label>{labelText}</label>
+            }
+            <input
+                ref={inputRef}
+                onKeyPress={setOnlyNumbers}
+                className={classNames(cls.Input, {}, [className, cls[variant]])}
+                {...otherProps}/>
+        </div>
     )
 })
