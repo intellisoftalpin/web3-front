@@ -10,7 +10,7 @@ import { LOCAL_STORAGE_SESSION_AUTH_KEY, LOCAL_STORAGE_WALLET_KEY } from 'shared
 import { type LocalStorageWallet } from 'entities/Wallet/model/types/walletSchema'
 import { authActions } from 'entities/Auth/model/slice/authSlice'
 import { useTranslation } from 'react-i18next'
-import { notify } from 'shared/lib/notify/notify'
+import { toast } from 'react-toastify'
 
 interface WalletItem {
     name: string
@@ -36,7 +36,7 @@ export const WalletSelection = memo(({ className, onClose }: WalletChooseProps) 
     const connectToWallet = async (walletInformation: WalletItem) => {
         try {
             const { name, icon } = walletInformation
-            const wallet = await BrowserWallet.enable(name).catch(() => { notify('Wallet not authorised', 'error') })
+            const wallet = await BrowserWallet.enable(name).catch(() => { toast('Wallet not authorised', { type: 'error' }) })
             if (wallet) {
                 const rewardAddress = await wallet.getRewardAddresses()
 

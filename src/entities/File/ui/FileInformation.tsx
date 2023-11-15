@@ -3,6 +3,7 @@ import cls from './FileInformation.module.scss'
 import classNames from 'classnames'
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getFile } from '../model/selectors/getFile/getFile'
+import { formatBytes } from 'shared/lib/formatBytes/formatBytes'
 
 interface FileInformationProps {
     className?: string
@@ -27,7 +28,7 @@ export const FileInformation: FC<FileInformationProps> = ({ className }) => {
             </div>
             <div className={cls.informationItem}>
                 <span>Size</span>
-                <span>{size && `${(size / 1024).toFixed(0)}kb`}</span>
+                <span>{size && formatBytes(size)}</span>
             </div>
             <div className={cls.informationItem}>
                 <span>Last Modified</span>

@@ -3,30 +3,27 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getFileHash } from 'entities/File/model/selectors/gitFileHash/getFileHash'
 import { useCallback, useEffect, useState } from 'react'
 import { fileApi, signFile } from 'entities/File'
-import { notify } from 'shared/lib/notify/notify'
+import { toast } from 'react-toastify'
 
 export const useSignFile = () => {
-    const [isLoading, setLoading] = useState(true)
-    const { checkFileHash, isLoading: isCheckFileLoading } = useCheckFileMetadataHash()
+    const [isLoading, setLoading] = useState(false)
+    const { checkFileHash } = useCheckFileMetadataHash()
     const fileHash = useAppSelector(getFileHash)
-    const [submitTransaction, { isLoading: isSubmitLoading, data }] = fileApi.useSubmitFileTransactionMutation()
+    const [submitTransaction, { data }] = fileApi.useSubmitFileTransactionMutation()
 
     const signTransaction = useCallback(async () => {
+        setLoading(true)
         const checked = await checkFileHash()
         if (!checked) {
             const cbor = await signFile(fileHash)
-            if (cbor) await submitTransaction({ cbor })
+            if (cbor) await submitTransaction({ cbor }).finally(() => { setLoading(false) })
+            else setLoading(false)
         }
     }, [checkFileHash, fileHash, submitTransaction])
 
     useEffect(() => {
-        if (isCheckFileLoading && isSubmitLoading) setLoading(true)
-        else setLoading(false)
-    }, [isCheckFileLoading, isSubmitLoading])
-
-    useEffect(() => {
         if (data?.txHash) {
-            notify(`File signed, hash ${data.txHash}`, 'success')
+            toast(`File signed, hash ${data.txHash}`, { type: 'success' })
         }
     }, [data])
 

@@ -1,14 +1,14 @@
 import { store } from 'app/providers/StoreProvider/config/store'
 import { BrowserWallet, Transaction } from '@meshsdk/core'
-import { notify } from 'shared/lib/notify/notify'
 import { convertToAda } from 'shared/lib/convertToAda/convertToAda'
 import { walletErrorToObject } from 'shared/lib/wallet/walletErrorToObject/walletErrorToObject'
+import { toast } from 'react-toastify'
 
 export const makeCborBuyTokens = async (transferAmountTokens: string, transferAmountFee: string, fee: number) => {
     try {
         const { walletName, address: ownerAddress, balance } = store.getState().wallet
         if (balance < convertToAda(+transferAmountTokens + +(transferAmountFee) + fee)) {
-            notify('Not enough ada to buy', 'error'); return
+            toast('Not enough ada to buy', { type: 'error' }); return
         }
         const { assetId, policyId, address, rewardAddress, assetQuantity } = store.getState().token
         const wallet = await BrowserWallet.enable(walletName)
@@ -23,6 +23,6 @@ export const makeCborBuyTokens = async (transferAmountTokens: string, transferAm
         const unsignedTx = await tx.build()
         return await wallet.signTx(unsignedTx)
     } catch (e: any) {
-        notify(walletErrorToObject(e.message).info, 'error')
+        toast(walletErrorToObject(e.message).info, { type: 'error' })
     }
 }
