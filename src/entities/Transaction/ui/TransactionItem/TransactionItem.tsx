@@ -14,9 +14,9 @@ import Copy from 'shared/assets/icon/copyClipboard.svg'
 import Calendar from 'shared/assets/icon/calendar.svg'
 import { useTranslation } from 'react-i18next'
 import { copyText } from 'shared/lib/copyText/copyText'
-import { notify } from 'shared/lib/notify/notify'
 import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/convertCountWithDecimals'
 import { TokenImage } from 'shared/ui/TokenImage'
+import { toast } from 'react-toastify'
 
 interface TransactionItemProps {
     className?: string
@@ -36,7 +36,7 @@ export const TransactionItem = memo((props: TransactionItemProps) => {
 
     const deleteTransactionHandler = async () => {
         await deleteTransaction(transaction.id).unwrap().then((e) => {
-            notify(e.message, 'success')
+            toast(e.message, { type: 'success' })
         })
     }
 

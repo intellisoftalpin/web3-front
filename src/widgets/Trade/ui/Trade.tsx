@@ -15,13 +15,13 @@ import {
 } from 'entities/Transaction/lib/transaction'
 import { type RequestTransaction } from 'entities/Transaction/model/types/transactionSchema'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { notify } from 'shared/lib/notify/notify'
 import { useGetTransactionActiveQuery, useSaveTransactionMutation } from 'entities/Transaction'
 import { convertToLovelaces } from 'shared/lib/convertToLovalaces/convertToLovelaces'
 import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/convertCountWithDecimals'
 import { Tooltip } from 'shared/ui/Tooltip'
 import { TokenImage } from 'shared/ui/TokenImage'
 import { connectWalletActions } from 'features/connectWithWallet/model/slice/connectWalletSlice'
+import { toast } from 'react-toastify'
 
 interface TradeProps {
     className?: string
@@ -84,7 +84,7 @@ export const Trade = memo(({ className }: TradeProps) => {
                     console.log(data)
                     if (data.transactionId) {
                         setBusyTransaction(true)
-                        notify('Transaction created', 'success')
+                        toast('Transaction created', { type: 'success' })
                     }
                 })
             }

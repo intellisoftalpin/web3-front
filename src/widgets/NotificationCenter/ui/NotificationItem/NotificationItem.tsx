@@ -24,7 +24,6 @@ export const NotificationItem = memo((props: NotificationItemProps) => {
                 <p>{String(notification.content)}</p>
                 <span>{moment(notification.createdAt).locale(i18n.language).format('MMMM Do, h:mm:ss A')}</span>
             </div>
-            <div className={classNames(cls.unread, { [cls.read]: notification.read })}/>
         </div>
     )
 })

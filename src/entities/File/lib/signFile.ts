@@ -1,7 +1,7 @@
 import { BrowserWallet, Transaction } from '@meshsdk/core'
 import { store } from 'app/providers/StoreProvider/config/store'
-import { notify } from 'shared/lib/notify/notify'
 import { walletErrorToObject } from 'shared/lib/wallet/walletErrorToObject/walletErrorToObject'
+import { toast } from 'react-toastify'
 
 // The function to sign file
 export const signFile = async (fileHash: string) => {
@@ -13,6 +13,6 @@ export const signFile = async (fileHash: string) => {
         const unsignedTx = await tx.build()
         return await wallet.signTx(unsignedTx)
     } catch (e: any) {
-        notify((walletErrorToObject(e.message).info), 'error')
+        toast((walletErrorToObject(e.message).info), { type: 'error' })
     }
 }

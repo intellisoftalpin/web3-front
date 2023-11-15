@@ -5,7 +5,6 @@ import { Button } from 'shared/ui/Button'
 import { BrowserWallet, Transaction } from '@meshsdk/core'
 import { LOCAL_STORAGE_WALLET_KEY } from 'shared/consts/localStorageAuthKey'
 import { type LocalStorageWallet } from 'entities/Wallet/model/types/walletSchema'
-import { notify } from 'shared/lib/notify/notify'
 import {
     useDelegateToPoolMutation,
     useGetCurrentPoolDelegatedQuery,
@@ -21,6 +20,7 @@ import { Tooltip } from 'shared/ui/Tooltip'
 import { walletErrorToObject } from 'shared/lib/wallet/walletErrorToObject/walletErrorToObject'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { connectWalletActions } from 'features/connectWithWallet/model/slice/connectWalletSlice'
+import { toast } from 'react-toastify'
 
 interface DelegationPoolProps {
     className?: string
@@ -46,16 +46,16 @@ export const DelegationPool = memo(({ className, poolId }: DelegationPoolProps) 
 
             const unsignedTx = await tx.build()
             const signedTx = await wallet.signTx(unsignedTx).catch((data: Error) => {
-                notify(walletErrorToObject(data.message).info, 'error')
+                toast(walletErrorToObject(data.message).info, { type: 'error' })
             })
             if (signedTx) {
                 await conductDelegation({ cbor: signedTx }).then((data) => {
                     console.log(data)
-                    notify('Delegation transaction successfully created', 'success')
+                    toast('Delegation transaction successfully created', { type: 'success' })
                 })
             }
         } catch (e: any) {
-            notify(e.message, 'error')
+            toast(e.message, { type: 'error' })
         }
     }
 

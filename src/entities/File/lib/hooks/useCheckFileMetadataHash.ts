@@ -2,7 +2,7 @@ import { useCallback, useEffect } from 'react'
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getFile } from 'entities/File/model/selectors/getFile/getFile'
 import { fileApi } from 'entities/File'
-import { notify } from 'shared/lib/notify/notify'
+import { toast } from 'react-toastify'
 
 export const useCheckFileMetadataHash = () => {
     const { name: fileName, hash: fileHash } = useAppSelector(getFile)
@@ -16,9 +16,9 @@ export const useCheckFileMetadataHash = () => {
     useEffect(() => {
         if (data) {
             if (data.length > 0) {
-                notify(`The file already signed, file name - ${fileName}`, 'info')
+                toast(`The file already signed, file name - ${fileName}`, { type: 'info' })
             } else {
-                notify(`The file is not signed, file name - ${fileName}`, 'info')
+                toast(`The file is not signed, file name - ${fileName}`, { type: 'info' })
             }
         }
         // eslint-disable-next-line
