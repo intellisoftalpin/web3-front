@@ -1,4 +1,4 @@
-.UploadPage {
+.DocPage {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,4 +18,25 @@
 
 .header {
     text-align: center;
+}
+
+.fileStatusBlock {
+    display: flex;
+    max-width: 100%;
+    background-color: var(--bg-color);
+    padding: 20px;
+    border-radius: var(--border-radius);
+}
+
+.textMessage {
+    font-size: var(--font-size-s);
+    line-height: 1.2;
+}
+
+.success {
+    color: var(--green-color);
+}
+
+.error {
+    color: var(--red-color)
 }

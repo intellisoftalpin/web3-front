@@ -21,7 +21,7 @@ export const NotificationItem = memo((props: NotificationItemProps) => {
                 <NotificationIcon theme={notification.theme || 'dark'} type={notification.type || 'default'} className={cls.icon}/>
             </div>
             <div className={cls.text}>
-                <p>{String(notification.content)}</p>
+                <p>{notification.content as any}</p>
                 <span>{moment(notification.createdAt).locale(i18n.language).format('MMMM Do, h:mm:ss A')}</span>
             </div>
         </div>

@@ -15,6 +15,9 @@ export const fileSlice = createSlice({
     reducers: {
         setFile: (state, action: PayloadAction<FileSchema>) => {
             return action.payload
+        },
+        refreshFile: () => {
+            return initialState
         }
     }
 })

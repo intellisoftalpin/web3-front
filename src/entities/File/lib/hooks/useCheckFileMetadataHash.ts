@@ -1,28 +1,47 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
-import { getFile } from 'entities/File/model/selectors/getFile/getFile'
-import { fileApi } from 'entities/File'
-import { toast } from 'react-toastify'
+import { fileActions } from '../../model/slice/fileSlice'
+import { fileApi } from '../../api/fileApi'
+import { getFileHash } from 'entities/File/model/selectors/gitFileHash/getFileHash'
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
+
+export interface fileChecked {
+    checked: boolean
+    message: string
+    validated: boolean
+}
+
+const defaultData: fileChecked = {
+    checked: false,
+    message: '',
+    validated: false
+}
 
 export const useCheckFileMetadataHash = () => {
-    const { name: fileName, hash: fileHash } = useAppSelector(getFile)
-    const [getFileMetadata, { data, isLoading }] = fileApi.useGetFileMetadataMutation()
+    const [data, setData] = useState<fileChecked>(defaultData)
+    const dispatch = useAppDispatch()
+    const fileHash = useAppSelector(getFileHash)
+    const [getFileMetadata, { data: fileMetadata, isLoading }] = fileApi.useGetFileMetadataMutation()
 
     const checkFileHash = useCallback(async () => {
         const data = await getFileMetadata({ key: '10337', value: fileHash }).unwrap()
         return data.length > 0
     }, [fileHash, getFileMetadata])
 
+    const refreshFile = useCallback(() => {
+        setData(defaultData)
+        dispatch(fileActions.refreshFile())
+    }, [dispatch])
+
     useEffect(() => {
-        if (data) {
-            if (data.length > 0) {
-                toast(`The file already signed, file name - ${fileName}`, { type: 'info' })
+        if (fileMetadata) {
+            if (fileMetadata.length > 0) {
+                setData({ checked: true, message: 'Success: Provided file was successfully validated, as it was properly signed', validated: true })
             } else {
-                toast(`The file is not signed, file name - ${fileName}`, { type: 'info' })
+                setData({ checked: true, message: 'Failure: Provided file was not signed yet or the  content of the file is modified or corrupted', validated: false })
             }
         }
-        // eslint-disable-next-line
-    }, [data])
+    }, [fileMetadata])
 
-    return { checkFileHash, isLoading }
+    return { checkFileHash, refreshFile, isLoading, data }
 }
