@@ -9,6 +9,7 @@ export interface fileChecked {
     checked: boolean
     message: string
     validated: boolean
+    hash?: string
 }
 
 const defaultData: fileChecked = {
@@ -36,7 +37,8 @@ export const useCheckFileMetadataHash = () => {
     useEffect(() => {
         if (fileMetadata) {
             if (fileMetadata.length > 0) {
-                setData({ checked: true, message: 'Success: Provided file was successfully validated, as it was properly signed', validated: true })
+                const hash = fileMetadata[0].hash
+                setData({ checked: true, message: 'Success: Provided file was successfully validated, as it was properly signed', validated: true, hash })
             } else {
                 setData({ checked: true, message: 'Failure: Provided file was not signed yet or the  content of the file is modified or corrupted', validated: false })
             }

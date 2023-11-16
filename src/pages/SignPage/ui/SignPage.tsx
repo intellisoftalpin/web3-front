@@ -15,7 +15,7 @@ interface UploadPageProps {
 }
 
 const SignPage: FC<UploadPageProps> = ({ className }) => {
-    const { signTransaction: onSignTransaction, isLoading } = useSignFile()
+    const { signTransaction: onSignTransaction, isLoading, conductData, refreshData } = useSignFile()
     const dispatch = useAppDispatch()
     const { connected } = useAppSelector(getAuth)
     const fileHash = useAppSelector(getFileHash)
@@ -28,10 +28,18 @@ const SignPage: FC<UploadPageProps> = ({ className }) => {
         <div className={classNames(cls.UploadPage, {}, [className])}>
             <div className={cls.fileUpload}>
                 <h1 className={cls.header}>File</h1>
-                <FileUpload/>
+                {conductData.isConduct
+                    ? <div className={cls.fileStatusBlock}>
+                        <span className={cls.textMessage}>{conductData.message}</span>
+                        <a href={`https://cardanoscan.io/transaction/${conductData.hash}`} target='_blank' rel="noreferrer">Cardanoscan link</a>
+                    </div>
+                    : <FileUpload/>
+                }
                 <FileInformation/>
                 {connected
-                    ? <Button onClick={onSignTransaction} disabled={!fileHash || isLoading} variant='outline'>{isLoading ? 'Pending...' : 'Sign'}</Button>
+                    ? <Button onClick={conductData.isConduct ? refreshData : onSignTransaction} disabled={!fileHash || isLoading} variant='outline'>
+                        {isLoading ? 'Pending...' : `${conductData.isConduct ? 'Sign another document' : 'Sign'}`}
+                    </Button>
                     : <Button onClick={onOpenConnectWallet} variant='outline'>Connect to a wallet</Button>
                 }
             </div>

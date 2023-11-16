@@ -31,7 +31,7 @@ const baseQueryWithErrorLogging: (baseQuery: BaseQueryType) => BaseQueryType = (
     const result = await baseQuery(args, api, extraOptions)
     const error: ErrorLogging = result.error as ErrorLogging
     if (error) {
-        toast(`${error.status} - ${error.data.msg}`, { type: 'error' })
+        toast(`${error.status} - ${error.data.msg || 'Something went wrong'}`, { type: 'error' })
     }
     return result
 }

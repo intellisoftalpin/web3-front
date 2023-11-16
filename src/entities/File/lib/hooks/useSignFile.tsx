@@ -1,22 +1,27 @@
 import { useCheckFileMetadataHash } from './useCheckFileMetadataHash'
-import cls from './CreatedMessage.module.scss'
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getFileHash } from 'entities/File/model/selectors/gitFileHash/getFileHash'
 import { useCallback, useEffect, useState } from 'react'
-import { fileApi, signFile } from 'entities/File'
+import { fileActions, fileApi, signFile } from 'entities/File'
 import { toast } from 'react-toastify'
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 
-const CreatedMessage = (props: { text: string, hash: string }) => {
-    return (
-        <div className={cls.createdMessage}>
-            <span>{props.text}</span>
-            <a href={`https://cardanoscan.io/transaction/${props.hash}`} target="_blank" rel="noreferrer">cardanoscan: {props.hash}</a>
-        </div>
-    )
+interface ConductData {
+    isConduct: boolean
+    hash: string
+    message: string
+}
+
+const defaultConductData: ConductData = {
+    isConduct: false,
+    hash: '',
+    message: ''
 }
 
 export const useSignFile = () => {
+    const dispatch = useAppDispatch()
     const [isLoading, setLoading] = useState(false)
+    const [conductData, setConductData] = useState<ConductData>(defaultConductData)
     const { checkFileHash } = useCheckFileMetadataHash()
     const fileHash = useAppSelector(getFileHash)
     const [submitTransaction, { data }] = fileApi.useSubmitFileTransactionMutation()
@@ -29,16 +34,21 @@ export const useSignFile = () => {
             if (cbor) await submitTransaction({ cbor }).finally(() => { setLoading(false) })
             else setLoading(false)
         } else {
-            toast('Failure: The provided file has already been signed', { type: 'error' })
+            toast('Failure: The provided document has already been signed', { type: 'error' })
             setLoading(false)
         }
     }, [checkFileHash, fileHash, submitTransaction])
 
+    const refreshData = useCallback(() => {
+        dispatch(fileActions.refreshFile())
+        setConductData(defaultConductData)
+    }, [dispatch])
+
     useEffect(() => {
         if (data?.txHash) {
-            toast(<CreatedMessage text='File signed' hash={data.txHash}/>, { type: 'success' })
+            setConductData({ isConduct: true, message: 'Success: The document was successfully signed', hash: data.txHash })
         }
     }, [data])
 
-    return { signTransaction, isLoading }
+    return { signTransaction, isLoading, conductData, refreshData }
 }
