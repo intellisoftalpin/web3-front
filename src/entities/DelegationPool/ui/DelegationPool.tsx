@@ -21,6 +21,7 @@ import { walletErrorToObject } from 'shared/lib/wallet/walletErrorToObject/walle
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { connectWalletActions } from 'features/connectWithWallet/model/slice/connectWalletSlice'
 import { toast } from 'react-toastify'
+import { explorerPoolsLink } from 'shared/consts/env'
 
 interface DelegationPoolProps {
     className?: string
@@ -77,7 +78,7 @@ export const DelegationPool = memo(({ className, poolId }: DelegationPoolProps) 
                                 <SocialLinks social={pool.metadata.info.social} homepage={pool.tickerJSON.homepage}/>
                             </div>
                             <div className={cls.poolAddress}>
-                                <a href={`https://cardanoscan.io/pool/${pool.view}`} target='_blank' rel="noreferrer">{pool.view}</a>
+                                <a href={`${explorerPoolsLink}${pool.view}`} target='_blank' rel="noreferrer">{pool.view}</a>
                             </div>
                         </div>
                     </div>

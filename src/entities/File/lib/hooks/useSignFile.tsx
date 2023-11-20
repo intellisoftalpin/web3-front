@@ -1,10 +1,10 @@
 import { useCheckFileMetadataHash } from './useCheckFileMetadataHash'
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
-import { getFileHash } from 'entities/File/model/selectors/gitFileHash/getFileHash'
 import { useCallback, useEffect, useState } from 'react'
 import { fileActions, fileApi, signFile } from 'entities/File'
 import { toast } from 'react-toastify'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { getFile } from '../../model/selectors/getFile/getFile'
 
 interface ConductData {
     isConduct: boolean
@@ -23,21 +23,21 @@ export const useSignFile = () => {
     const [isLoading, setLoading] = useState(false)
     const [conductData, setConductData] = useState<ConductData>(defaultConductData)
     const { checkFileHash } = useCheckFileMetadataHash()
-    const fileHash = useAppSelector(getFileHash)
+    const fileData = useAppSelector(getFile)
     const [submitTransaction, { data }] = fileApi.useSubmitFileTransactionMutation()
 
     const signTransaction = useCallback(async () => {
         setLoading(true)
         const checked = await checkFileHash()
         if (!checked) {
-            const cbor = await signFile(fileHash)
+            const cbor = await signFile(fileData)
             if (cbor) await submitTransaction({ cbor }).finally(() => { setLoading(false) })
             else setLoading(false)
         } else {
             toast('Failure: The provided document has already been signed', { type: 'error' })
             setLoading(false)
         }
-    }, [checkFileHash, fileHash, submitTransaction])
+    }, [checkFileHash, fileData, submitTransaction])
 
     const refreshData = useCallback(() => {
         dispatch(fileActions.refreshFile())
@@ -46,9 +46,9 @@ export const useSignFile = () => {
 
     useEffect(() => {
         if (data?.txHash) {
-            setConductData({ isConduct: true, message: 'Success: The document was successfully signed', hash: data.txHash })
+            setConductData({ isConduct: true, message: `Success: The document was successfully signed by ${fileData.signedBy}`, hash: data.txHash })
         }
-    }, [data])
+    }, [data, fileData.signedBy])
 
     return { signTransaction, isLoading, conductData, refreshData }
 }

@@ -4,4 +4,5 @@ export interface FileSchema {
     type: string
     size: number | null
     lastModified: number | null
+    signedBy: string
 }

@@ -6,7 +6,8 @@ const initialState: FileSchema = {
     type: '',
     hash: '',
     lastModified: null,
-    size: null
+    size: null,
+    signedBy: ''
 }
 
 export const fileSlice = createSlice({

@@ -26,5 +26,8 @@ declare interface Window {
         LINK: string
         LINK_TEXT: string
         ACTIONS: string
+        EXPLORER_TRANSACTIONS_LINK: string
+        EXPLORER_ADDRESSES_LINK: string
+        EXPLORER_POOLS_LINK: string
     }
 }

@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import { Upload } from 'shared/ui/Upload'
 import { fileActions, hashFile } from 'entities/File'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { title } from 'shared/consts/env'
 
 interface FileUploadProps {
     className?: string
@@ -18,7 +19,7 @@ export const FileUpload = memo((props: FileUploadProps) => {
         if (file) {
             const { name, size, type, lastModified } = file
             const hash = await hashFile(file)
-            dispatch(fileActions.setFile({ type, size, lastModified, hash, name }))
+            dispatch(fileActions.setFile({ type, size, lastModified, hash, name, signedBy: title }))
         }
     }, [dispatch, file])
 

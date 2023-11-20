@@ -9,6 +9,11 @@
 
 .informationItem {
     display: flex;
+    text-align: end;
     gap: 40px;
     justify-content: space-between;
+}
+
+.informationCurrentItem {
+    word-break: break-all;
 }

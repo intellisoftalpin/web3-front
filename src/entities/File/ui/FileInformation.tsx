@@ -16,23 +16,23 @@ export const FileInformation: FC<FileInformationProps> = ({ className }) => {
         <div className={classNames(cls.FileInformation, {}, [className])}>
             <div className={cls.informationItem}>
                 <span>Name</span>
-                <span>{name}</span>
+                <span className={cls.informationCurrentItem}>{name}</span>
             </div>
             <div className={cls.informationItem}>
                 <span>Hash</span>
-                <span>{hash}</span>
+                <span className={cls.informationCurrentItem}>{hash}</span>
             </div>
             <div className={cls.informationItem}>
                 <span>Type</span>
-                <span>{type}</span>
+                <span className={cls.informationCurrentItem}>{type}</span>
             </div>
             <div className={cls.informationItem}>
                 <span>Size</span>
-                <span>{size && formatBytes(size)}</span>
+                <span className={cls.informationCurrentItem}>{size && formatBytes(size)}</span>
             </div>
             <div className={cls.informationItem}>
                 <span>Last Modified</span>
-                <span>{lastModified && new Date(lastModified).toLocaleString()}</span>
+                <span className={cls.informationCurrentItem}>{lastModified && new Date(lastModified).toLocaleString()}</span>
             </div>
         </div>
     )

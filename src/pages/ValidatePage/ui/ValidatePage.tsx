@@ -6,6 +6,7 @@ import { FileInformation, useCheckFileMetadataHash } from 'entities/File'
 import { Button } from 'shared/ui/Button'
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getFileHash } from 'entities/File/model/selectors/gitFileHash/getFileHash'
+import { explorerTransactionsLink } from 'shared/consts/env'
 
 interface DocPageProps {
     className?: string
@@ -25,8 +26,8 @@ const DocPage: FC<DocPageProps> = ({ className }) => {
                             {data.message}
                         </span>
                         {data.hash &&
-                            <a href={`https://cardanoscan.io/transaction/${data.hash}`} target='_blank' rel="noreferrer">
-                                Cardanoscan link
+                            <a href={`${explorerTransactionsLink}${data.hash}`} target='_blank' rel="noreferrer">
+                                Explorer link
                             </a>
                         }
                     </div>

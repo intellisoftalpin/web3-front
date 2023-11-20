@@ -9,6 +9,7 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getAuth } from 'entities/Auth/model/selectors/getAuth/getAuth'
 import { getFileHash } from 'entities/File/model/selectors/gitFileHash/getFileHash'
 import { connectWalletActions } from 'features/connectWithWallet/model/slice/connectWalletSlice'
+import { explorerTransactionsLink } from 'shared/consts/env'
 
 interface UploadPageProps {
     className?: string
@@ -31,7 +32,7 @@ const SignPage: FC<UploadPageProps> = ({ className }) => {
                 {conductData.isConduct
                     ? <div className={cls.fileStatusBlock}>
                         <span className={cls.textMessage}>{conductData.message}</span>
-                        <a href={`https://cardanoscan.io/transaction/${conductData.hash}`} target='_blank' rel="noreferrer">Cardanoscan link</a>
+                        <a href={`${explorerTransactionsLink}${conductData.hash}`} target='_blank' rel="noreferrer">Explorer link</a>
                     </div>
                     : <FileUpload/>
                 }
