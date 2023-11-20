@@ -4,12 +4,13 @@ import 'react-toastify/dist/ReactToastify.css'
 import classNames from 'classnames'
 import { useTheme } from 'app/providers/ThemeProvider'
 import { useEffect } from 'react'
+import { title } from 'shared/consts/env'
 
 export const App = () => {
     const { theme } = useTheme()
 
     useEffect(() => {
-        document.title = window?._env_?.TITLE || process.env.TITLE || 'Web3 app'
+        document.title = title
         document.querySelector('meta[name="description"]')
             ?.setAttribute('content', window?._env_?.DESCRIPTION || process.env.DESCRIPTION || 'Web3 app')
     }, [])

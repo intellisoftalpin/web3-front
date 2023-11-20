@@ -7,6 +7,7 @@ import { type HistoryTransaction } from 'entities/Transaction/model/types/transa
 import { hexToString } from 'shared/lib/hexToString/hexToString'
 import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/convertCountWithDecimals'
 import { TokenImage } from 'shared/ui/TokenImage'
+import { explorerAddressesLink } from 'shared/consts/env'
 
 interface SingleItemHistoryProps {
     className?: string
@@ -23,7 +24,7 @@ export const SingleItemHistory = memo((props: SingleItemHistoryProps) => {
             {address &&
                 <div className={classNames(cls.SingleItemHistory, {}, [className])}>
                     <a
-                        href={`https://preprod.cardanoscan.io/address/${address}`}
+                        href={`${explorerAddressesLink}${address}`}
                         target="_blank"
                         rel="noreferrer"
                     >

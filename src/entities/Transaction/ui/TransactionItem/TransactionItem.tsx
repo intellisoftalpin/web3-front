@@ -17,6 +17,7 @@ import { copyText } from 'shared/lib/copyText/copyText'
 import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/convertCountWithDecimals'
 import { TokenImage } from 'shared/ui/TokenImage'
 import { toast } from 'react-toastify'
+import { explorerTransactionsLink } from 'shared/consts/env'
 
 interface TransactionItemProps {
     className?: string
@@ -55,7 +56,7 @@ export const TransactionItem = memo((props: TransactionItemProps) => {
                         {transaction.hash &&
                             <div className={cls.transactionId}>
                                 <a
-                                    href={`https://preprod.cardanoscan.io/transaction/${transaction.hash}`}
+                                    href={`${explorerTransactionsLink}${transaction.hash}`}
                                     target="_blank" rel="noreferrer"
                                 >
                                     {transaction.hash}
