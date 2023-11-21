@@ -1,7 +1,6 @@
 import { store } from 'app/providers/StoreProvider/config/store'
 import { BrowserWallet, Transaction } from '@meshsdk/core'
 import { convertToAda } from 'shared/lib/convertToAda/convertToAda'
-import { walletErrorToObject } from 'shared/lib/wallet/walletErrorToObject/walletErrorToObject'
 import { toast } from 'react-toastify'
 
 export const makeCborBuyTokens = async (transferAmountTokens: string, transferAmountFee: string, fee: number) => {
@@ -23,6 +22,6 @@ export const makeCborBuyTokens = async (transferAmountTokens: string, transferAm
         const unsignedTx = await tx.build()
         return await wallet.signTx(unsignedTx)
     } catch (e: any) {
-        toast(walletErrorToObject(e.message).info, { type: 'error' })
+        toast(e.message, { type: 'error' })
     }
 }

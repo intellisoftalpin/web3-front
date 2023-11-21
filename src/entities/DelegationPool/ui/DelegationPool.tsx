@@ -17,7 +17,6 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getWallet } from 'entities/Wallet/model/selectors/getWallet/getWallet'
 import { SocialLinks } from './SocialLinks/SocialLinks'
 import { Tooltip } from 'shared/ui/Tooltip'
-import { walletErrorToObject } from 'shared/lib/wallet/walletErrorToObject/walletErrorToObject'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { connectWalletActions } from 'features/connectWithWallet/model/slice/connectWalletSlice'
 import { toast } from 'react-toastify'
@@ -33,6 +32,7 @@ export const DelegationPool = memo(({ className, poolId }: DelegationPoolProps) 
     const { connected } = useAppSelector(getAuth)
     const { authHash } = useAppSelector(getWallet)
     const { data: pool } = useGetPoolByIdQuery(poolId)
+
     const { data: delegatedPool } = useGetCurrentPoolDelegatedQuery(authHash, { skip: !connected })
     const [conductDelegation] = useDelegateToPoolMutation()
 
@@ -47,11 +47,10 @@ export const DelegationPool = memo(({ className, poolId }: DelegationPoolProps) 
 
             const unsignedTx = await tx.build()
             const signedTx = await wallet.signTx(unsignedTx).catch((data: Error) => {
-                toast(walletErrorToObject(data.message).info, { type: 'error' })
+                toast(data.message, { type: 'error' })
             })
             if (signedTx) {
-                await conductDelegation({ cbor: signedTx }).then((data) => {
-                    console.log(data)
+                await conductDelegation({ cbor: signedTx }).then(() => {
                     toast('Delegation transaction successfully created', { type: 'success' })
                 })
             }

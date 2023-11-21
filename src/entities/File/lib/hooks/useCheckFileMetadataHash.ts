@@ -4,7 +4,6 @@ import { fileActions } from '../../model/slice/fileSlice'
 import { fileApi } from '../../api/fileApi'
 import { getFileHash } from 'entities/File/model/selectors/gitFileHash/getFileHash'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { type FileSchema } from '../../model/types/fileSchema'
 
 export interface fileChecked {
     checked: boolean
@@ -37,10 +36,9 @@ export const useCheckFileMetadataHash = () => {
 
     useEffect(() => {
         if (fileMetadata) {
-            const fileMetadataHash: FileSchema[] = fileMetadata as FileSchema[]
             if (fileMetadata.length > 0) {
-                const { hash, signedBy } = fileMetadataHash[0]
-                setData({ checked: true, message: `Success: Provided file was successfully validated by ${signedBy}, as it was properly signed`, validated: true, hash })
+                const { hash } = fileMetadata[0]
+                setData({ checked: true, message: 'Success: Provided file was successfully validated, as it was properly signed', validated: true, hash })
             } else {
                 setData({ checked: true, message: 'Failure: Provided file was not signed yet or the  content of the file is modified or corrupted', validated: false })
             }
