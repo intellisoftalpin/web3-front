@@ -6,15 +6,14 @@ import { BrowserWallet, Transaction } from '@meshsdk/core'
 import { LOCAL_STORAGE_WALLET_KEY } from 'shared/consts/localStorageAuthKey'
 import { type LocalStorageWallet } from 'entities/Wallet/model/types/walletSchema'
 import {
+    type DelegationPoolSchema,
     useDelegateToPoolMutation,
-    useGetCurrentPoolDelegatedQuery,
     useGetPoolByIdQuery
 } from 'entities/DelegationPool'
 import { convertToAda } from 'shared/lib/convertToAda/convertToAda'
 import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/convertCountWithDecimals'
 import { getAuth } from 'entities/Auth/model/selectors/getAuth/getAuth'
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
-import { getWallet } from 'entities/Wallet/model/selectors/getWallet/getWallet'
 import { SocialLinks } from './SocialLinks/SocialLinks'
 import { Tooltip } from 'shared/ui/Tooltip'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
@@ -25,15 +24,13 @@ import { explorerPoolsLink } from 'shared/consts/env'
 interface DelegationPoolProps {
     className?: string
     poolId: string
+    delegatedPool?: DelegationPoolSchema
 }
 
-export const DelegationPool = memo(({ className, poolId }: DelegationPoolProps) => {
+export const DelegationPool = memo(({ className, poolId, delegatedPool }: DelegationPoolProps) => {
     const dispatch = useAppDispatch()
     const { connected } = useAppSelector(getAuth)
-    const { authHash } = useAppSelector(getWallet)
     const { data: pool } = useGetPoolByIdQuery(poolId)
-
-    const { data: delegatedPool } = useGetCurrentPoolDelegatedQuery(authHash, { skip: !connected })
     const [conductDelegation] = useDelegateToPoolMutation()
 
     const delegateToPool = async (poolId: string) => {
