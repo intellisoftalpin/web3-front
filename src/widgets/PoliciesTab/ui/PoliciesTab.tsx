@@ -21,7 +21,9 @@ export const PoliciesTab: FC<PoliciesTabProps> = ({ className }) => {
                     <span>Create new policy</span>
                 </Button>
             </div>
-            <ListPolicies/>
+            <div className={cls.listPoliciesBlock}>
+                <ListPolicies/>
+            </div>
         </div>
     )
 }

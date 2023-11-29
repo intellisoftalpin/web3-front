@@ -1,8 +1,7 @@
 .TokensPage {
     display: flex;
     gap: 50px;
-    margin: 20px;
-    padding-top: 20px;
+    padding: 20px;
 }
 
 .tabList {
@@ -38,4 +37,12 @@
 .active {
     background-color: var(--inverted-bg-color);
     color: var(--bg-color);
+}
+
+.tabPanels {
+    width: 100%;
+}
+
+.tabPanel {
+    display: flex;
 }

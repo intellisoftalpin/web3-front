@@ -21,13 +21,13 @@ const TokensPage: FC<TokensPageProps> = ({ className }) => {
                 </TabList>
             </div>
             <div className={cls.tabPanels}>
-                <TabPanel>
+                <TabPanel className={cls.tabPanel}>
                     <TokensTab/>
                 </TabPanel>
-                <TabPanel>
+                <TabPanel className={cls.tabPanel}>
                     <NftTab/>
                 </TabPanel>
-                <TabPanel>
+                <TabPanel className={cls.tabPanel}>
                     <PoliciesTab/>
                 </TabPanel>
             </div>
