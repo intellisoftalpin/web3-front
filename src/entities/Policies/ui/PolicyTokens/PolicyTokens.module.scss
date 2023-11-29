@@ -1,0 +1,25 @@
+.PolicyTokens {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--inverted-bg-color);
+    border-radius: var(--border-radius);
+    padding: 10px 20px;
+}
+
+.tokens {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.token {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img {
+        width: 20px;
+        height: 20px;
+    }
+}
