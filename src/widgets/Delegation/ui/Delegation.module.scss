@@ -12,3 +12,23 @@
         font-size: var(--font-size-s);
     }
 }
+
+.stakeAddress {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+    min-width: 700px;
+
+
+    span {
+        padding: 10px;
+        border-radius: var(--border-radius);
+        background-color: var(--bg-color);
+        font-size: var(--font-size-s);
+    }
+}

@@ -1,0 +1,35 @@
+.TokensList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.token {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid var(--bg-color);
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+
+    span {
+        font-size: var(--font-size-s);
+    }
+}
+
+.item {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.web {
+    height: 24px;
+    width: 24px;
+    fill: var(--inverted-bg-color);
+
+    &:hover {
+        fill: var(--accent-color);
+    }
+}

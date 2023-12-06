@@ -9,6 +9,7 @@ export async function getWalletInfo (): Promise<WalletSchemaSetData | undefined>
     if (walletLocalStorage) {
         const wallet = await BrowserWallet.enable(walletLocalStorage.walletName)
         const address: string[] = await wallet.getUsedAddresses()
+        const [stakeAddress] = await wallet.getRewardAddresses()
         const balance = await wallet.getLovelace()
         const network = await wallet.getNetworkId()
         const tokens = await wallet.getAssets()
@@ -17,6 +18,7 @@ export async function getWalletInfo (): Promise<WalletSchemaSetData | undefined>
 
         return {
             address: address[0],
+            stakeAddress,
             balance: convertToAda(+balance),
             network: definedNetwork || 'mainnet',
             tokens

@@ -14,11 +14,17 @@ interface DelegationProps {
 export const Delegation = memo(({ className }: DelegationProps) => {
     const { connected } = useAppSelector(getAuth)
     const { data: dataPools } = useGetPoolsQuery('')
-    const { authHash } = useAppSelector(getWallet)
+    const { authHash, stakeAddress } = useAppSelector(getWallet)
     const { data: delegatedPool } = useGetCurrentPoolDelegatedQuery(authHash, { skip: !connected })
 
     return (
         <div className={classNames(cls.Delegation, {}, [className])}>
+            {stakeAddress &&
+                <div className={cls.stakeAddress}>
+                    <h2>Your stake address</h2>
+                    <span>{stakeAddress}</span>
+                </div>
+            }
             {delegatedPool &&
                 <div className={cls.alreadyDelegating}>
                     <span>Already delegating: <a href={`${explorerPoolsLink}${delegatedPool.view}`} target='_blank' rel="noreferrer">

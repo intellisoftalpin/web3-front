@@ -1,8 +1,8 @@
 .PolicyTokens {
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--inverted-bg-color);
     border-radius: var(--border-radius);
+    background-color: var(--secondary-bg-color);
     padding: 10px 20px;
 }
 
