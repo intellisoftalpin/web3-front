@@ -1,0 +1,14 @@
+.CreateTokenForm {
+    background-color: var(--secondary-bg-color);
+    height: fit-content;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: var(--border-radius);
+}
+
+.header {
+    text-align: center;
+}
+

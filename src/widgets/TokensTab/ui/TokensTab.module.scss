@@ -1,3 +1,15 @@
 .TokensTab {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
 
+.createTokensForm {
+    flex: 2;
+}
+
+.createdTokens {
+    flex: 3;
 }

@@ -8,6 +8,7 @@ const initialState: WalletSchema = {
     authHash: '',
     address: '',
     balance: 0,
+    stakeAddress: '',
     network: '',
     tokens: []
 }
@@ -26,6 +27,7 @@ export const walletSlice = createSlice({
             state.address = action.payload.address
             state.network = action.payload.network
             state.tokens = action.payload.tokens
+            state.stakeAddress = action.payload.stakeAddress
         },
         disconnectWallet: () => {
             localStorage.removeItem(LOCAL_STORAGE_SESSION_AUTH_KEY)

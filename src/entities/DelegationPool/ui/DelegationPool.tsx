@@ -108,15 +108,11 @@ export const DelegationPool = memo(({ className, poolId, delegatedPool }: Delega
                         {/*    <span>{pool.rose12}</span> */}
                         {/* </div> */}
                     </div>
-                    {!connected && <Button className={cls.delegate} variant='outline' onClick={onOpenConnectWallet}>Connect to a wallet</Button>}
-                    {(connected && delegatedPool) &&
-                        <div className={cls.delegateButton}>
-                            {delegatedPool.view === pool.view
-                                ? <span className={cls.delegated}>Already delegated</span>
-                                : <Button className={cls.delegate} onClick={async () => { await delegateToPool(pool.view) }}>Delegate to pool</Button>
-                            }
-
-                        </div>
+                    {connected
+                        ? delegatedPool && delegatedPool?.view === pool.view
+                            ? <span className={cls.delegated}>Already delegated</span>
+                            : <Button className={cls.delegate} onClick={async () => { await delegateToPool(pool.view) }}>Delegate to pool</Button>
+                        : <Button className={cls.delegate} variant='outline' onClick={onOpenConnectWallet}>Connect to a wallet</Button>
                     }
                 </div>
             }

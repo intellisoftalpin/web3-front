@@ -17,3 +17,13 @@ export interface TokenSchema {
     }
     totalQuantity: number
 }
+
+export interface Token {
+    name: string
+    ticker: string
+    policy: string
+    homepageLink: string
+    description: string
+    decimals: number
+    supply: string
+}

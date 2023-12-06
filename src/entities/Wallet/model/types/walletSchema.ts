@@ -7,10 +7,12 @@ export interface WalletSchema {
     balance: number
     address: string
     network: string
+    stakeAddress: string
     tokens: AssetExtended[]
 }
 
 export interface WalletSchemaSetData {
+    stakeAddress: string
     balance: number
     address: string
     network: string
