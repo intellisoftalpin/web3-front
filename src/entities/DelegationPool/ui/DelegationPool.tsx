@@ -12,14 +12,11 @@ import {
 } from 'entities/DelegationPool'
 import { convertToAda } from 'shared/lib/convertToAda/convertToAda'
 import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/convertCountWithDecimals'
-import { getAuth } from 'entities/Auth/model/selectors/getAuth/getAuth'
-import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { SocialLinks } from './SocialLinks/SocialLinks'
 import { Tooltip } from 'shared/ui/Tooltip'
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { connectWalletActions } from 'features/connectWithWallet/model/slice/connectWalletSlice'
 import { toast } from 'react-toastify'
 import { explorerPoolsLink } from 'shared/consts/env'
+import { CheckAuthButton } from 'widgets/CheckAuthButton'
 
 interface DelegationPoolProps {
     className?: string
@@ -28,8 +25,6 @@ interface DelegationPoolProps {
 }
 
 export const DelegationPool = memo(({ className, poolId, delegatedPool }: DelegationPoolProps) => {
-    const dispatch = useAppDispatch()
-    const { connected } = useAppSelector(getAuth)
     const { data: pool } = useGetPoolByIdQuery(poolId)
     const [conductDelegation] = useDelegateToPoolMutation()
 
@@ -54,10 +49,6 @@ export const DelegationPool = memo(({ className, poolId, delegatedPool }: Delega
         } catch (e: any) {
             toast(e.message, { type: 'error' })
         }
-    }
-
-    const onOpenConnectWallet = () => {
-        dispatch(connectWalletActions.openWalletModal({ isOpen: true }))
     }
 
     return (
@@ -108,12 +99,11 @@ export const DelegationPool = memo(({ className, poolId, delegatedPool }: Delega
                         {/*    <span>{pool.rose12}</span> */}
                         {/* </div> */}
                     </div>
-                    {connected
-                        ? delegatedPool && delegatedPool?.view === pool.view
+                    <CheckAuthButton>
+                        { delegatedPool && delegatedPool?.view === pool.view
                             ? <span className={cls.delegated}>Already delegated</span>
-                            : <Button className={cls.delegate} onClick={async () => { await delegateToPool(pool.view) }}>Delegate to pool</Button>
-                        : <Button className={cls.delegate} variant='outline' onClick={onOpenConnectWallet}>Connect to a wallet</Button>
-                    }
+                            : <Button className={cls.delegate} onClick={async () => { await delegateToPool(pool.view) }}>Delegate to pool</Button>}
+                    </CheckAuthButton>
                 </div>
             }
         </>

@@ -13,7 +13,7 @@ export const TokensList: FC<TokensListProps> = ({ className, tokens }) => {
     return (
         <div className={classNames(cls.TokensList, {}, [className])}>
             {tokens.map(item =>
-                <div className={cls.token}>
+                <div className={cls.token} key={item.name + item.policy}>
                     <div className={cls.item}>
                         <span>{item.name} ({item.ticker})</span>
                         <a href={item.homepageLink}>

@@ -1,46 +1,55 @@
-import React, { type InputHTMLAttributes, memo, useRef } from 'react'
+import React, { forwardRef, type InputHTMLAttributes, type LegacyRef } from 'react'
 import cls from './Input.module.scss'
 import classNames from 'classnames'
+import { type FieldError } from 'react-hook-form'
 
 export type InputVariant = 'filled' | 'clear'
-export type InputMode = 'decimal' | 'text'
+
+interface ValidationSchema {
+    required?: boolean
+    min?: number
+}
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     className?: string
     variant?: InputVariant
-    mode?: InputMode
     labelText?: string
+    error?: FieldError
+    invalid?: boolean
+    validationSchema?: ValidationSchema
 }
 
-export const Input = memo((props: InputProps) => {
+export const Input = forwardRef((props: InputProps, ref: LegacyRef<HTMLInputElement>) => {
     const {
         className,
         variant = 'filled',
-        mode = 'text',
         labelText,
+        error,
+        invalid,
+        validationSchema,
         ...otherProps
     } = props
 
-    const inputRef = useRef<HTMLInputElement>(null)
-
-    const setOnlyNumbers = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (mode === 'decimal') {
-            if (!/[0-9]/.test(e.key)) {
-                e.preventDefault()
-            }
-        }
-    }
+    const required = error && error.type === 'required'
+    const min = error && error.type === 'min'
 
     return (
         <div className={cls.inputBlock}>
             {labelText &&
-                <label>{labelText}</label>
+                <div className={cls.labelBlock}>
+                    <label>{labelText}</label>
+                    {validationSchema?.required && '*'}
+                </div>
             }
             <input
-                ref={inputRef}
-                onKeyPress={setOnlyNumbers}
-                className={classNames(cls.Input, {}, [className, cls[variant]])}
-                {...otherProps}/>
+                className={classNames(cls.Input, { [cls.invalid]: invalid }, [className, cls[variant]])}
+                {...otherProps} ref={ref}/>
+            {required &&
+                <span className={cls.validationError}>This field is required</span>
+            }
+            {min &&
+                <span className={cls.validationError}>Minimal count is {validationSchema?.min}</span>
+            }
         </div>
     )
 })

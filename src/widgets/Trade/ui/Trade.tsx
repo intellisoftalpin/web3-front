@@ -20,8 +20,8 @@ import { convertToLovelaces } from 'shared/lib/convertToLovalaces/convertToLovel
 import { convertCountWithDecimals } from 'shared/lib/convertCountWithDecimals/convertCountWithDecimals'
 import { Tooltip } from 'shared/ui/Tooltip'
 import { TokenImage } from 'shared/ui/TokenImage'
-import { connectWalletActions } from 'features/connectWithWallet/model/slice/connectWalletSlice'
 import { toast } from 'react-toastify'
+import { CheckAuthButton } from 'widgets/CheckAuthButton'
 
 interface TradeProps {
     className?: string
@@ -60,10 +60,6 @@ export const Trade = memo(({ className }: TradeProps) => {
         if (tokensCheck) {
             setChoiceTokenModal(true)
         }
-    }
-
-    const openConnectWalletModal = () => {
-        dispatch(connectWalletActions.openWalletModal({ isOpen: true }))
     }
 
     const createTransactionBuyTokens = async () => {
@@ -177,12 +173,11 @@ export const Trade = memo(({ className }: TradeProps) => {
                 </div>
             </div>
             <div className={cls.deposit}>
-                {connected
-                    ? <Button disabled={isBusyTransaction} variant="outline" onClick={async () => {
-                        await createTransactionBuyTokens()
-                    }}>{isBusyTransaction ? t('Transaction pending') : t('Buy')}</Button>
-                    : <Button variant="outline" onClick={openConnectWalletModal}>{t('wallet connect button')}</Button>
-                }
+                <CheckAuthButton>
+                    <Button disabled={isBusyTransaction} variant="outline" onClick={async () => { await createTransactionBuyTokens() }}>
+                        {isBusyTransaction ? t('Transaction pending') : t('Buy')}
+                    </Button>
+                </CheckAuthButton>
             </div>
         </div>
     )

@@ -21,6 +21,12 @@
     }
 }
 
+.labelBlock {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .clear {
     background: none;
     outline: none;
@@ -31,4 +37,13 @@
     outline: 1px solid var(--bg-color);
     font-size: var(--font-size-m);
     color: var(--inverted-bg-color)
+}
+
+.invalid {
+    outline: 1px solid var(--red-color);
+}
+
+.validationError {
+    font-size: var(--font-size-s);
+    color: var(--red-color);
 }

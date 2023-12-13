@@ -7,6 +7,7 @@ import { Button } from 'shared/ui/Button'
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getFileHash } from 'entities/File/model/selectors/gitFileHash/getFileHash'
 import { explorerTransactionsLink } from 'shared/consts/env'
+import { CheckAuthButton } from 'widgets/CheckAuthButton'
 
 interface DocPageProps {
     className?: string
@@ -34,10 +35,12 @@ const DocPage: FC<DocPageProps> = ({ className }) => {
                     : <FileUpload/>
                 }
                 <FileInformation/>
-                <Button onClick={data.checked ? refreshFile : onCheckFileHash} disabled={!fileHash || isLoading}
-                    variant='outline'>
-                    {isLoading ? 'Pending...' : `${data.checked ? 'Validate another document' : 'Validate'}`}
-                </Button>
+                <CheckAuthButton>
+                    <Button onClick={data.checked ? refreshFile : onCheckFileHash} disabled={!fileHash || isLoading}
+                        variant='outline'>
+                        {isLoading ? 'Pending...' : `${data.checked ? 'Validate another document' : 'Validate'}`}
+                    </Button>
+                </CheckAuthButton>
             </div>
         </div>
     )
