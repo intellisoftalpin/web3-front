@@ -29,5 +29,6 @@ declare interface Window {
         EXPLORER_TRANSACTIONS_LINK: string
         EXPLORER_ADDRESSES_LINK: string
         EXPLORER_POOLS_LINK: string
+        TOKEN_ASSET_ID: string
     }
 }

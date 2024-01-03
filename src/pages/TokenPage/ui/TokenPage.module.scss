@@ -1,0 +1,22 @@
+.TokenPage {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1440px;
+}
+
+.secretBlock {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.withoutConnectBlock {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    p {
+        line-height: 1.5;
+    }
+}

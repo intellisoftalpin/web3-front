@@ -6,13 +6,15 @@ import { DelegatePage } from 'pages/DalegatePage'
 import { SignPage } from 'pages/SignPage'
 import { TokensPage } from 'pages/TokensPage'
 import { ValidatePage } from 'pages/ValidatePage'
+import { TokenPage } from 'pages/TokenPage'
 
 export enum AppRoutes {
     TRADE = 'trade',
     DELEGATE = 'delegate',
     SIGN = 'sign',
     VALIDATE = 'validate',
-    TOKENS = 'tokens'
+    TOKENS = 'tokens',
+    TOKEN = 'token'
 }
 
 export const RoutesPath: Record<AppRoutes, string> = {
@@ -20,7 +22,8 @@ export const RoutesPath: Record<AppRoutes, string> = {
     [AppRoutes.DELEGATE]: 'delegate',
     [AppRoutes.SIGN]: 'sign',
     [AppRoutes.VALIDATE]: 'validate',
-    [AppRoutes.TOKENS]: 'tokens'
+    [AppRoutes.TOKENS]: 'tokens',
+    [AppRoutes.TOKEN]: 'token'
 }
 
 const defaultRoutes = [
@@ -52,6 +55,12 @@ const defaultRoutes = [
         id: 'tokens',
         path: RoutesPath.tokens,
         element: <TokensPage/>,
+        errorElement: <NotFoundPage/>
+    },
+    {
+        id: 'token',
+        path: RoutesPath.token,
+        element: <TokenPage/>,
         errorElement: <NotFoundPage/>
     }
 ]

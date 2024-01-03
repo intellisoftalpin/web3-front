@@ -9,6 +9,8 @@
 
     transition: background-color 0.5s;
 
+    text-transform: capitalize;
+
     &:hover {
         background-color: var(--bg-color);
 
