@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react'
 import classNames from 'classnames'
-import cls from './TokenPage.module.scss'
+import cls from './SecretPage.module.scss'
 import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getAuth } from 'entities/Auth/model/selectors/getAuth/getAuth'
 import { getWallet } from 'entities/Wallet/model/selectors/getWallet/getWallet'
@@ -10,7 +10,7 @@ interface TokenPageProps {
     className?: string
 }
 
-const TokenPage = memo((props: TokenPageProps) => {
+const SecretPage = memo((props: TokenPageProps) => {
     const { className } = props
 
     const { connected } = useAppSelector(getAuth)
@@ -37,4 +37,4 @@ const TokenPage = memo((props: TokenPageProps) => {
     )
 })
 
-export default TokenPage
+export default SecretPage
