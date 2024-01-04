@@ -8,6 +8,7 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getFileHash } from 'entities/File/model/selectors/gitFileHash/getFileHash'
 import { explorerTransactionsLink } from 'shared/consts/env'
 import { CheckAuthButton } from 'widgets/CheckAuthButton'
+import { AppDescription } from 'widgets/AppDescription'
 
 interface UploadPageProps {
     className?: string
@@ -19,6 +20,7 @@ const SignPage: FC<UploadPageProps> = ({ className }) => {
 
     return (
         <div className={classNames(cls.UploadPage, {}, [className])}>
+            <AppDescription/>
             <div className={cls.fileUpload}>
                 <h1 className={cls.header}>File</h1>
                 {conductData.isConduct

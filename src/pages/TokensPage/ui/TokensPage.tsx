@@ -5,6 +5,7 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs'
 import { TokensTab } from 'widgets/TokensTab'
 import { NftTab } from 'widgets/NftTab'
 import { PoliciesTab } from 'widgets/PoliciesTab'
+import { AppDescription } from 'widgets/AppDescription'
 
 interface TokensPageProps {
     className?: string
@@ -12,26 +13,29 @@ interface TokensPageProps {
 
 const TokensPage: FC<TokensPageProps> = ({ className }) => {
     return (
-        <Tabs className={classNames(cls.TokensPage, {}, [className])}>
-            <div>
-                <TabList className={cls.tabList}>
-                    <Tab className={cls.tab} selectedClassName={cls.active}>Tokens</Tab>
-                    <Tab className={cls.tab} selectedClassName={cls.active}>NFT</Tab>
-                    <Tab className={cls.tab} selectedClassName={cls.active}>Policies</Tab>
-                </TabList>
-            </div>
-            <div className={cls.tabPanels}>
-                <TabPanel className={cls.tabPanel}>
-                    <TokensTab/>
-                </TabPanel>
-                <TabPanel className={cls.tabPanel}>
-                    <NftTab/>
-                </TabPanel>
-                <TabPanel className={cls.tabPanel}>
-                    <PoliciesTab/>
-                </TabPanel>
-            </div>
-        </Tabs>
+        <div className={cls.TokensPage}>
+            <AppDescription/>
+            <Tabs className={classNames(cls.tabs, {}, [className])}>
+                <div>
+                    <TabList className={cls.tabList}>
+                        <Tab className={cls.tab} selectedClassName={cls.active}>Tokens</Tab>
+                        <Tab className={cls.tab} selectedClassName={cls.active}>NFT</Tab>
+                        <Tab className={cls.tab} selectedClassName={cls.active}>Policies</Tab>
+                    </TabList>
+                </div>
+                <div className={cls.tabPanels}>
+                    <TabPanel className={cls.tabPanel}>
+                        <TokensTab/>
+                    </TabPanel>
+                    <TabPanel className={cls.tabPanel}>
+                        <NftTab/>
+                    </TabPanel>
+                    <TabPanel className={cls.tabPanel}>
+                        <PoliciesTab/>
+                    </TabPanel>
+                </div>
+            </Tabs>
+        </div>
     )
 }
 

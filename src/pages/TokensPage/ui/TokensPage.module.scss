@@ -1,4 +1,10 @@
 .TokensPage {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tabs {
     display: flex;
     gap: 50px;
     padding: 20px;

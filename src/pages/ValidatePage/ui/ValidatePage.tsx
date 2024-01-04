@@ -8,6 +8,7 @@ import { useAppSelector } from 'shared/lib/hooks/useAppSelector/useAppSelector'
 import { getFileHash } from 'entities/File/model/selectors/gitFileHash/getFileHash'
 import { explorerTransactionsLink } from 'shared/consts/env'
 import { CheckAuthButton } from 'widgets/CheckAuthButton'
+import { AppDescription } from 'widgets/AppDescription'
 
 interface DocPageProps {
     className?: string
@@ -19,6 +20,7 @@ const DocPage: FC<DocPageProps> = ({ className }) => {
 
     return (
         <div className={classNames(cls.DocPage, {}, [className])}>
+            <AppDescription/>
             <div className={cls.fileUpload}>
                 <h1 className={cls.header}>File</h1>
                 {data.checked
