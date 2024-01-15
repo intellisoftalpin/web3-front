@@ -13,13 +13,15 @@ export const signFile = async (fileMetadata: FileSchema) => {
         const wallet = await BrowserWallet.enable(walletName)
         const tx = new Transaction({ initiator: wallet })
         const lastModifiedDate = moment(lastModified).format('YYYY-MM-DD HH:mm:ss')
-        type = shortFormatText(type, 60)
-        name = shortFormatText(name, 60)
+        type = shortFormatText(type, 30)
+        name = shortFormatText(name, 30)
+        console.log(name.length)
         tx.setMetadata(10337, hash)
         tx.setMetadata(10338, { name, signedBy, lastModifiedDate, type, size })
         const unsignedTx = await tx.build()
         return await wallet.signTx(unsignedTx)
     } catch (e: any) {
+        console.log(e)
         toast(e.message, { type: 'error' })
     }
 }
