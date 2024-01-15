@@ -43,7 +43,7 @@ export const WalletDropdown = memo(({ className, openedDropdown }: WalletDropdow
                         </div>
                     </div>
                     <div className={cls.address}>
-                        <span>{shortFormatText(address, 9) }</span>
+                        <span>{shortFormatText(address, 16) }</span>
                         <Copy className={cls.copy} onClick={async () => { await copyText(address) }}/>
                     </div>
                 </div>

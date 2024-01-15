@@ -40,7 +40,7 @@ export const WalletConnected = memo(({ className }: WalletConnectedProps) => {
                 </div>
                 <div className={cls.address}>
                     <img src={icon} alt="walletIcon"/>
-                    <span>{shortFormatText(address, 9)}</span>
+                    <span>{shortFormatText(address, 16)}</span>
                 </div>
                 <Arrow className={classNames(cls.arrow, { [cls.arrowOpened]: openedDropdown }) }/>
             </div>

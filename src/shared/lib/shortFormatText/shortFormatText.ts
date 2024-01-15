@@ -1,6 +1,6 @@
 export const shortFormatText = (text: string, count = 10) => {
-    if (text.length < count) {
+    if (text.length <= count) {
         return text
     }
-    return text.substring(0, count) + '...' + text.substring(text.length - count, text.length)
+    return text.slice(0, Math.floor(count / 2)) + '...' + text.slice(Math.floor(-count / 2))
 }
